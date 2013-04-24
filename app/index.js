@@ -27,7 +27,7 @@ var EmberGenerator = module.exports = function EmberGenerator(args, options) {
 
 util.inherits(EmberGenerator, yeoman.generators.Base);
 
-EmberGenerator.prototype.welcome = function welcome() {
+EmberGenerator.prototype.welcome = function() {
   // welcome message
   var welcomeMsg =
   '\n     _-----_' +
@@ -43,92 +43,96 @@ EmberGenerator.prototype.welcome = function welcome() {
   console.log(welcomeMsg);
 };
 
-EmberGenerator.prototype.askFor = function askFor() {
+EmberGenerator.prototype.askFor = function() {
   var cb = this.async();
 
-  var prompts = [{
-    name: 'compassBootstrap',
-    message: 'Would you like to include Twitter Bootstrap for Sass?',
-    default: 'Y/n'
-  }];
+  var prompts = [
+    /*{
+      name: 'compassBootstrap',
+      message: 'Would you like to include Twitter Bootstrap for Sass?',
+      default: 'Y/n'
+    },*/
+    {
+      name: 'namespace',
+      message: 'What would you like your app\'s namespace to be?',
+      default: 'App'
+    }
+  ];
+
 
   this.prompt(prompts, function (err, props) {
     if (err) {
       return this.emit('error', err);
     }
 
-    this.compassBootstrap = (/y/i).test(props.compassBootstrap);
+    //this.compassBootstrap = (/y/i).test(props.compassBootstrap);
+    this.compassBootstrap = false;
+    this.namespace = props.namespace;
     cb();
   }.bind(this));
 
 };
 
-EmberGenerator.prototype.createDirLayout = function createDirLayout() {
-  this.mkdir('app/templates');
-  this.mkdir('app/styles');
-  this.mkdir('app/images');
-  this.mkdir('app/scripts');
-  this.mkdir('app/scripts/models');
-  this.mkdir('app/scripts/controllers');
-  this.mkdir('app/scripts/routes');
-  this.mkdir('app/scripts/views');
+EmberGenerator.prototype.createDirLayout = function() {
+  this.mkdir('app');
+  this.mkdir('assets');
+  this.mkdir('assets/styles');
+  this.mkdir('assets/images');
+  this.mkdir('assets/js');
 };
 
-EmberGenerator.prototype.git = function git() {
+EmberGenerator.prototype.git = function() {
   this.copy('gitignore', '.gitignore');
   this.copy('gitattributes', '.gitattributes');
 };
 
-EmberGenerator.prototype.bower = function bower() {
+EmberGenerator.prototype.bower = function() {
   this.copy('bowerrc', '.bowerrc');
-  this.copy('_component.json', 'component.json');
+  this.template('_component.json', 'component.json');
 };
 
-EmberGenerator.prototype.packageFile = function packageFile() {
+EmberGenerator.prototype.packageFile = function() {
   this.copy('_package.json', 'package.json');
 };
 
-EmberGenerator.prototype.jshint = function jshint() {
+EmberGenerator.prototype.jshint = function() {
   this.copy('jshintrc', '.jshintrc');
 };
 
-EmberGenerator.prototype.editorConfig = function editorConfig() {
+EmberGenerator.prototype.editorConfig = function() {
   this.copy('editorconfig', '.editorconfig');
 };
 
-EmberGenerator.prototype.gruntfile = function gruntfile() {
+EmberGenerator.prototype.gruntfile = function() {
+  this.template('yo_grunt.js');
   this.template('Gruntfile.js');
 };
 
-EmberGenerator.prototype.templates = function templates() {
-  this.copy('hbs/application.hbs', 'app/templates/application.hbs');
-  this.copy('hbs/index.hbs', 'app/templates/index.hbs');
-};
-
-EmberGenerator.prototype.writeIndex = function writeIndex() {
+EmberGenerator.prototype.writeIndex = function() {
   var mainCssFiles = [];
   if (this.compassBootstrap) {
-    mainCssFiles.push('styles/style.css');
+    mainCssFiles.push('assets/styles/style.css');
   } else {
-    mainCssFiles.push('styles/normalize.css');
-    mainCssFiles.push('styles/style.css');
+    mainCssFiles.push('assets/styles/normalize.css');
+    mainCssFiles.push('assets/styles/style.css');
   }
 
-  this.indexFile = this.appendStyles(this.indexFile, 'styles/main.css', mainCssFiles);
+  this.indexFile = this.appendStyles(this.indexFile, 'assets/styles/main.css', mainCssFiles);
 
   this.indexFile = this.appendScripts(this.indexFile, 'scripts/components.js', [
     'components/jquery/jquery.js',
     'components/handlebars/handlebars.runtime.js',
-    'components/ember/ember.js'
+    'components/ember/ember.js',
+    'components/ember-data/index.js'
   ]);
 
   this.indexFile = this.appendFiles(this.indexFile, 'js', 'scripts/main.js', [
-    'scripts/app.js',
-    'scripts/compiled-templates.js'
+    'app/app.js',
+    'app/compiled-templates.js'
   ], null, ['app', '.tmp']);
 };
 
-EmberGenerator.prototype.bootstrapJavaScript = function bootstrapJavaScript() {
+EmberGenerator.prototype.bootstrapJavaScript = function() {
   if (!this.compassBootstrap) {
     return;  // Skip if disabled.
   }
@@ -151,15 +155,22 @@ EmberGenerator.prototype.bootstrapJavaScript = function bootstrapJavaScript() {
   ]);
 };
 
-EmberGenerator.prototype.all = function all() {
+EmberGenerator.prototype.all = function() {
   this.write('app/index.html', this.indexFile);
 
   if (this.compassBootstrap) {
-    this.copy('styles/style_bootstrap.scss', 'app/styles/style.scss');
+    this.copy('styles/style_bootstrap.scss', 'assets/styles/style.scss');
   } else {
-    this.copy('styles/normalize.css', 'app/styles/normalize.css');
-    this.copy('styles/style.css', 'app/styles/style.css');
+    this.copy('styles/normalize.css', 'assets/styles/normalize.css');
+    this.copy('styles/style.css', 'assets/styles/style.css');
   }
 
-  this.copy('scripts/app.js', 'app/scripts/app.js');
+  this.template('app/index/index_route.js');
+  this.template('app/index/main.js');
+  this.template('app/index/index.handlebars');
+  
+  this.template('app/app.js');
+  this.template('app/router.js');
+  this.template('app/store.js');
+  this.template('app/application.handlebars');
 };

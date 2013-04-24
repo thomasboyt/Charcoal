@@ -1,0 +1,2 @@
+<%= namespace %>.Router.map(function() {
+});

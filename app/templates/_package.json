@@ -1,6 +1,6 @@
 {
   "name": "<%= _.slugify(appname) %>",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "dependencies": {},
   "devDependencies": {
     "grunt": "~0.4.1",
@@ -25,7 +25,8 @@
     "grunt-svgmin": "~0.1.0",
     "grunt-concurrent": "~0.1.0",
     "matchdep": "~0.1.1",
-    "grunt-ember-templates": "~0.4.4"
+    "grunt-ember-templates": "~0.4.4",
+    "grunt-neuter": "git://github.com/trek/grunt-neuter.git"
   },
   "engines": {
     "node": ">=0.8.0"
