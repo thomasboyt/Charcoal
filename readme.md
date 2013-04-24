@@ -1,21 +1,21 @@
 # Alternative Ember generator 
 
-This is an 
+This an alternative Ember generator forked from [Yeoman's offical Ember Generator](https://github.com/yeoman/generator-ember). 
 
-This an alternative Ember generator based on the [official Ember Generator](https://github.com/yeoman/generator-ember). It uses a "module" pattern for the file structure rather
+This generator creates a new Ember project that uses Bower to handle dependencies and builds with [Trek's Grunt-Neuter task](https://github.com/trek/grunt-neuter). It uses a "module" pattern for the file structure rather than the traditional controller, model, view, route, and template folders. A longer guide on using this generator is coming soon, but if you're familar with the parts involved, feel free to use it :)
 
 ## Usage
 
 Execute these steps from the command line, one after another:
 
 1. `mkdir webapp && cd webapp`
-2. `npm install -g generator-ember`
+2. `npm install -g git@github.com:thomasboyt/generator-ember.git`
 3. `yo ember`
 4. `grunt server`
 
 A page with "Welcome to Ember.js" should appear in your browser.
 
-## Generators
+## Extra Generators
 
 `yo ember:module` - Generates a new folder in your `app/` containing the following:
 
@@ -48,10 +48,6 @@ The default Bower configuration includes JQuery, Handlebars, Ember, and Ember Da
 * `--test-framework=[framework]`
 
   Defaults to `mocha`. Can be switched for another supported testing framework like `jasmine`.
-
-
-## Credits
-
 
 ## License
 
