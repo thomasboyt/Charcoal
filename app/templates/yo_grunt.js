@@ -1,3 +1,9 @@
+/*
+ * This file defines a bunch of premade tasks for you to use.
+ * If you'd like to add your own tasks, you should add them to the `config`
+ * object in your `Gruntfile.js` instead of here.
+ * */
+
 var lrSnippet = require('grunt-contrib-livereload/lib/utils').livereloadSnippet;
 var mountFolder = function (connect, dir) {
   return connect.static(require('path').resolve(dir));
@@ -6,6 +12,9 @@ var template = require('grunt').template;
 
 module.exports = {
   config: {
+
+    // Watch tasks
+    // ------------------
     watch: {
       ember_templates: {
         files: [
@@ -15,7 +24,7 @@ module.exports = {
         tasks: ['ember_templates', 'livereload']
       },
       coffee: {
-        files: ['<%%= yeoman.app %>/scripts/{,*/}*.coffee'],
+        files: ['<%%= yeoman.app %>/{,*/}*.coffee'],
         tasks: ['coffee:dist']
       },
       coffeeTest: {
@@ -25,13 +34,16 @@ module.exports = {
       livereload: {
         files: [
           '<%%= yeoman.app %>/*.html',
-          '{.tmp,<%%= yeoman.app %>}/assets/{,*/}*.css',
-          '{.tmp,<%%= yeoman.app %>}/{,*/}*.js',
+          '{tmp,<%%= yeoman.app %>}/assets/{,*/}*.css',
+          '{tmp,<%%= yeoman.app %>}/{,*/}*.js',
           'assets/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
         ],
         tasks: ['livereload']
       }
     },
+
+    // Server tasks
+    // ------------------
     connect: {
       options: {
         port: 9000,
@@ -43,7 +55,7 @@ module.exports = {
           middleware: function (connect) {
             return [
               lrSnippet,
-              mountFolder(connect, '.tmp'),
+              mountFolder(connect, 'tmp'),
             ];
           }
         }
@@ -52,7 +64,7 @@ module.exports = {
         options: {
           middleware: function (connect) {
             return [
-              mountFolder(connect, '.tmp'),
+              mountFolder(connect, 'tmp'),
               mountFolder(connect, 'test')
             ];
           }
@@ -68,23 +80,29 @@ module.exports = {
         }
       }
     },
+
+    // ???
+    // ------------------
     open: {
       server: {
         path: 'http://localhost:<%%= connect.options.port %>'
       }
     },
+
+    // Dist
+    // ------------------
     clean: {
       dist: {
         files: [{
           dot: true,
           src: [
-            '.tmp',
+            'tmp',
             '<%%= yeoman.dist %>/*',
             '!<%%= yeoman.dist %>/.git*'
           ]
         }]
       },
-      server: '.tmp'
+      server: 'tmp'
     },
     jshint: {
       options: {
@@ -93,10 +111,13 @@ module.exports = {
       all: [
         'Gruntfile.js',
         '<%%= yeoman.app %>/scripts/{,*/}*.js',
-            '!<%%= yeoman.app %>/scripts/vendor/*',
-            'test/spec/{,*/}*.js'
+        '!<%%= yeoman.app %>/scripts/vendor/*',
+        'test/spec/{,*/}*.js'
       ]
-    },<% if (testFramework === 'mocha') { %>
+    },
+
+    // Testing
+    // ------------------
     mocha: {
       all: {
         options: {
@@ -104,7 +125,7 @@ module.exports = {
           urls: ['http://localhost:<%%= connect.options.port %>/index.html']
         }
       }
-    },<% } else if (testFramework === 'jasmine') { %>
+    },
     jasmine: {
       all: {
         /*src: '',*/
@@ -112,15 +133,18 @@ module.exports = {
           specs: 'test/spec/{,*/}*.js'
         }
       }
-    },<% } %>
+    },
+
+    // Asset building
+    // ------------------
     coffee: {
       dist: {
         files: [{
           expand: true,
           cwd: '<%%= yeoman.app %>/scripts',
           src: '{,*/}*.coffee',
-        dest: '.tmp/scripts',
-        ext: '.js'
+          dest: 'tmp/scripts',
+          ext: '.js'
         }]
       },
       test: {
@@ -128,11 +152,14 @@ module.exports = {
           expand: true,
           cwd: 'test/spec',
           src: '{,*/}*.coffee',
-        dest: '.tmp/spec',
-        ext: '.js'
+          dest: 'tmp/spec',
+          ext: '.js'
         }]
       }
     },
+
+    // Revisioning
+    // ------------------
     rev: {
       dist: {
         files: {
@@ -145,6 +172,9 @@ module.exports = {
         }
       }
     },
+
+    // Usemin
+    // ------------------
     useminPrepare: {
       html: '<%%= yeoman.app %>/index.html',
       options: {
@@ -158,6 +188,9 @@ module.exports = {
         dirs: ['<%%= yeoman.dist %>']
       }
     },
+
+    // Image minification
+    // ------------------
     imagemin: {
       dist: {
         files: [{
@@ -178,11 +211,14 @@ module.exports = {
         }]
       }
     },
+
+    // CSS & HTML minification
+    // ------------------
     cssmin: {
       dist: {
         files: {
           '<%%= yeoman.dist %>/styles/main.css': [
-            '.tmp/styles/{,*/}*.css',
+            'tmp/styles/{,*/}*.css',
             '<%%= yeoman.app %>/styles/{,*/}*.css'
           ]
         }
@@ -198,7 +234,9 @@ module.exports = {
         }]
       }
     },
-    // Put files not handled in other tasks here
+
+    // Misc. copying
+    // ------------------
     copy: {
       dist: {
         files: [{
@@ -209,12 +247,15 @@ module.exports = {
           src: [
             '*.{ico,txt}',
             '.htaccess',
-            'images/{,*/}*.{webp,gif}',
-            'styles/fonts/*'
+            'assets/images/{,*/}*.{webp,gif}',
+            'assets/styles/fonts/*'
           ]
         }]
       }
     },
+
+    // Concurrency
+    // ------------------
     concurrent: {
       server: [
         'ember_templates',
@@ -233,6 +274,9 @@ module.exports = {
         'htmlmin'
       ]
     },
+
+    // Ember-specific tasks
+    // ------------------
     ember_templates: {
       options: {
         templateName: function (sourceFile) {
@@ -242,7 +286,7 @@ module.exports = {
       },
       dist: {
         files: {
-          '.tmp/app/compiled-templates.js': [
+          'tmp/app/compiled-templates.js': [
             '<%%= yeoman.app %>/**/*.hbs',
             '<%%= yeoman.app %>/**/*.handlebars'
           ]
@@ -256,17 +300,20 @@ module.exports = {
       },
       server: {
         src: '<%%= yeoman.app %>/app.js',
-        dest: '.tmp/app/app.js'
+        dest: 'tmp/app/app.js'
       }
     },
 
     copy: {
       server: {
         files: [
-          { dest: '.tmp/index.html', src: ['app/index.html'] },
-          { expand: true, dest: '.tmp/', src: ['assets/**'] },
-          { expand: true, dest: '.tmp/', src: ['components/**'] },
-        ]
+          { dest: 'tmp/index.html', src: ['app/index.html'] },
+          { expand: true, dest: 'tmp/', src: ['assets/**'] },
+          { expand: true, dest: 'tmp/', src: ['components/**'] },
+        ],
+        options: {
+          includeSourceURL: true
+        }
       }
     }
 

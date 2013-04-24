@@ -1,10 +1,8 @@
-# Ember generator [![Build Status](https://secure.travis-ci.org/yeoman/generator-ember.png?branch=master)](http://travis-ci.org/yeoman/generator-ember)
+# Alternative Ember generator 
 
-> Gets you started with a "Hello World" implementation of
-[Ember](http://emberjs.com).
+This is an 
 
-Maintainer: [Anthony Bull](https://github.com/inkredabull)
-
+This an alternative Ember generator based on the [official Ember Generator](https://github.com/yeoman/generator-ember). It uses a "module" pattern for the file structure rather
 
 ## Usage
 
@@ -16,6 +14,30 @@ Execute these steps from the command line, one after another:
 4. `grunt server`
 
 A page with "Welcome to Ember.js" should appear in your browser.
+
+## Generators
+
+`yo ember:module` - Generates a new folder in your `app/` containing the following:
+
+```
+foo/
+  |--- foo_controller.js
+  |--- foo_module.js
+  |--- foo_route.js
+  |--- foo_view.js
+  |--- foo.handlebars
+  |--- main.js
+```
+
+## Asset Compilation
+
+The `Gruntfile` output by this generator uses the task configuration defined in `yo_grunt.js`, which includes various tasks that are not enabled by default.
+
+To enable these, install the relevant Grunt plugin (i.e. `grunt-contrib-less`) and add them to the build tasks defined in `Gruntfile.js`. More documentation on both aspects of that soon.
+
+## Bower
+
+The default Bower configuration includes JQuery, Handlebars, Ember, and Ember Data. The first three are all their latest stable revision, while Ember Data is always pulled from [ember-data-latest.js](http://builds.emberjs.com.s3.amazonaws.com/ember-data-latest.js).
 
 ## Options
 
@@ -29,19 +51,6 @@ A page with "Welcome to Ember.js" should appear in your browser.
 
 
 ## Credits
-
-The Ember code is taken directly from the [1.0 RC2](https://github.com/emberjs/starter-kit/archive/v1.0.0-rc.2.zip)
-
-
-## Contribute
-
-See the [contributing docs](https://github.com/yeoman/yeoman/blob/master/contributing.md)
-
-When submitting an issue, please follow the [guidelines](https://github.com/yeoman/yeoman/blob/master/contributing.md#issue-submission). Especially important is to make sure Yeoman is up-to-date, and providing the command or commands that cause the issue.
-
-When submitting a bugfix, write a test that exposes the bug and fails before applying your fix. Submit the test alongside the fix.
-
-When submitting a new feature, add tests that cover the feature.
 
 
 ## License
