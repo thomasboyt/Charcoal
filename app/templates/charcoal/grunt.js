@@ -184,7 +184,7 @@ module.exports = {
       html: ['<%%= yeoman.dist %>/{,*/}*.html'],
       css: ['<%%= yeoman.dist %>/styles/{,*/}*.css'],
       options: {
-        dirs: ['<%%= yeoman.dist %>']
+        dirs: ['<%%= yeoman.dist %>'],
       }
     },
 
@@ -259,14 +259,16 @@ module.exports = {
       server: [
         'ember_templates',
         'coffee:dist',
-        'neuter:server',
-        'copy:server',
+        'neuter',
+        'copy',
       ],
       test: [
         'coffee',
       ],
       dist: [
         'ember_templates',
+        'neuter',
+        'copy',
         'coffee',
         'imagemin',
         'svgmin',

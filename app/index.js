@@ -71,23 +71,34 @@ CharcoalGenerator.prototype.gruntfile = function() {
 };
 
 CharcoalGenerator.prototype.writeIndex = function() {
-  var mainCssFiles = [];
-  mainCssFiles.push('assets/styles/normalize.css');
-  mainCssFiles.push('assets/styles/style.css');
+  this.indexFile = this.appendFiles({
+    html: this.indexFile, 
+    fileType: 'css',
+    optimizedPath: 'assets/styles/main.css',
+    sourceFileList: [
+      'assets/styles/normalize.css',
+      'assets/styles/style.css'
+    ],
+    searchPath: '.'
+  });
 
-  this.indexFile = this.appendStyles(this.indexFile, 'assets/styles/main.css', mainCssFiles);
-
-  this.indexFile = this.appendScripts(this.indexFile, 'scripts/components.js', [
-    'components/jquery/jquery.js',
-    'components/handlebars/handlebars.runtime.js',
-    'components/ember/ember.js',
-    'components/ember-data/index.js'
-  ]);
+  this.indexFile = this.appendFiles({
+    html: this.indexFile,
+    fileType: 'js',
+    optimizedPath: 'scripts/components.js',
+    sourceFileList: [
+      'components/jquery/jquery.js',
+      'components/handlebars/handlebars.runtime.js',
+      'components/ember/ember.js',
+      'components/ember-data/index.js'
+    ],
+    searchPath: '.'
+  });
 
   this.indexFile = this.appendFiles(this.indexFile, 'js', 'scripts/main.js', [
     'app/app.js',
     'app/compiled-templates.js'
-  ], null, ['app', '.tmp']);
+  ], null, ['tmp']);
 };
 
 CharcoalGenerator.prototype.all = function() {
