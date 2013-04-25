@@ -1,5 +1,5 @@
 {
-  "name": "Charcoal",
+  "name": "generator-charcoal",
   "version": "0.1.0",
   "description": "Alternative Yeoman generator for Ember",
   "keywords": [
@@ -8,7 +8,8 @@
     "generator",
     "framework",
     "mvc",
-    "ember"
+    "ember",
+    "charcoal"
   ],
   "homepage": "https://github.com/thomasboyt/charcoal",
   "bugs": "https://github.com/thomasboyt/charcoal/issues",
