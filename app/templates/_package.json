@@ -24,7 +24,7 @@
     "grunt-concurrent": "~0.1.0",
     "matchdep": "~0.1.1",
     "grunt-ember-templates": "~0.4.4",
-    "grunt-neuter": "git://github.com/trek/grunt-neuter.git"
+    "grunt-neuter": "git://github.com/thomasboyt/grunt-neuter.git#glob-support"
   },
   "engines": {
     "node": ">=0.8.0"

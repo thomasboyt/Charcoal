@@ -37,6 +37,9 @@ CharcoalGenerator.prototype.askFor = function() {
 
 CharcoalGenerator.prototype.createDirLayout = function() {
   this.mkdir('app');
+  this.mkdir('app/modules');
+  this.mkdir('app/helpers');
+
   this.mkdir('assets');
   this.mkdir('assets/styles');
   this.mkdir('assets/images');
@@ -107,9 +110,8 @@ CharcoalGenerator.prototype.all = function() {
   this.copy('styles/normalize.css', 'assets/styles/normalize.css');
   this.copy('styles/style.css', 'assets/styles/style.css');
 
-  this.template('app/index/index_route.js');
-  this.template('app/index/main.js');
-  this.template('app/index/index.handlebars');
+  this.template('app/modules/index/route.js');
+  this.template('app/modules/index/index.handlebars');
   
   this.template('app/app.js');
   this.template('app/router.js');
