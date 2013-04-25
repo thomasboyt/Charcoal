@@ -22,7 +22,7 @@ npm install
 bower install
 ```
 
-Finally, if you'd like to use Charcoal's generators to speed-up development, install Yeoman and Charcoal with:
+Finally, if you'd like to use Charcoal's generators to speed up development, install Yeoman and Charcoal with:
 
 ```shell
 npm install -g yeoman
@@ -65,16 +65,31 @@ If you installed Yeoman and `generator-charcoal`, you can easily generate Ember 
 
 ```
 app/
-|---> my_module/
-      |---> controller.js
-      |---> model.js
-      |---> route.js
-      |---> view.js
-      |---> main.js
-      |---> template.handlebars
+ |--- my_module/
+      |--- controller.js
+      |--- model.js
+      |--- route.js
+      |--- view.js
+      |--- my_module.handlebars
 ```
 
 You can generate a module like this with `yo charcoal:module <module name>`. 
+
+By default, `app.js` (your app's entry point) loads your modules in the following order:
+
+```js
+require("store");
+require("modules/*/model");
+require("modules/*/controller");
+require("modules/*/view");
+require("helpers/*");
+require("router");
+require("modules/*/route");
+```
+
+This is the same loading order that the [Ember Rails gem uses](https://raw.github.com/emberjs/ember-rails/master/lib/generators/templates/app.js).
+
+If you need to specify further dependencies, simply add a new `require()` definition to any of your files. grunt-neuter is smart enough to only include a file once :)
 
 ### Using templates
 

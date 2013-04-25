@@ -9,7 +9,7 @@ What Charcoal has:
 * A generator for creating a new Ember project, including dependencies via Bower.
 * A default set of smart conventions and Grunt tasks to support it.
 * A generator to create new Ember modules.
-* A guide to building projects with Yeoman+Grunt+Bower+Charcoal.
+* [A guide to building projects with Yeoman+Grunt+Bower+Charcoal.](https://github.com/thomasboyt/charcoal/blob/master/app/templates/charcoal/readme.md)
 
 What Charcoal does not have:
 
@@ -37,19 +37,12 @@ A page with "Welcome to Ember.js" should appear in your browser.
 
 ```
 foo/
-  |--- foo_controller.js
-  |--- foo_module.js
-  |--- foo_route.js
-  |--- foo_view.js
+  |--- controller.js
+  |--- module.js
+  |--- route.js
+  |--- view.js
   |--- foo.handlebars
-  |--- main.js
 ```
-
-## Asset Compilation
-
-The `Gruntfile` output by this generator uses the task configuration defined in `charcoal/grunt.js`, which includes various tasks that are not enabled by default.
-
-To enable these, install the relevant Grunt plugin (i.e. `grunt-contrib-less`) and add them to the build tasks defined in `Gruntfile.js`. More documentation on both aspects of that soon.
 
 ## Bower
 
