@@ -106,5 +106,5 @@ CharcoalGenerator.prototype.all = function() {
   this.template('app/application.handlebars');
 
   this.template('README.md');
-  this.template('charcoal/doc.md');
+  this.template('charcoal/readme.md');
 };
