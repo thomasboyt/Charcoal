@@ -1,4 +1,4 @@
-require("<%= this.name %>/model.js")
-require("<%= this.name %>/controller.js")
-require("<%= this.name %>/view.js")
-require("<%= this.name %>/route.js")
+require("<%= name %>/model.js");
+require("<%= name %>/controller.js");
+require("<%= name %>/view.js");
+require("<%= name %>/route.js");

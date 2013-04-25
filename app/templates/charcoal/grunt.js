@@ -81,7 +81,7 @@ module.exports = {
       }
     },
 
-    // ???
+    // Opens your web browser when you start a server
     // ------------------
     open: {
       server: {
@@ -110,8 +110,7 @@ module.exports = {
       },
       all: [
         'Gruntfile.js',
-        '<%%= yeoman.app %>/scripts/{,*/}*.js',
-        '!<%%= yeoman.app %>/scripts/vendor/*',
+        '<%%= yeoman.app %>/{,*/}*.js',
         'test/spec/{,*/}*.js'
       ]
     },

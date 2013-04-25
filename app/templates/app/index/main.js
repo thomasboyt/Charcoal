@@ -1,1 +1,1 @@
-require('index/index_route')
+require('index/index_route');
