@@ -1,7 +1,7 @@
 var yeoman = require('yeoman-generator');
 var util = require('util');
 
-var Generator = module.exports = function(args, options) {
+var ModuleGenerator = module.exports = function(args, options) {
   yeoman.generators.NamedBase.apply(this, arguments);
 
   this.controllerType = options['controllerType'] || '';
@@ -11,9 +11,9 @@ var Generator = module.exports = function(args, options) {
   });
 };
 
-util.inherits(Generator, yeoman.generators.NamedBase);
+util.inherits(ModuleGenerator, yeoman.generators.NamedBase);
 
-Generator.prototype.createModule = function() {
+ModuleGenerator.prototype.createModule = function() {
   var name = this._.underscored(this.name);
   this.namespace = this._.classify(this.appname);
   this.modulename = this._.classify(this.name);

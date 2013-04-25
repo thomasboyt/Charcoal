@@ -1,4 +1,4 @@
-# Alternative Ember generator 
+# Charcoal: An alternative Ember generator 
 
 This an alternative Ember generator forked from [Yeoman's offical Ember Generator](https://github.com/yeoman/generator-ember). 
 
@@ -9,15 +9,15 @@ This generator creates a new Ember project that uses Bower to handle dependencie
 Execute these steps from the command line, one after another:
 
 1. `mkdir webapp && cd webapp`
-2. `npm install -g git@github.com:thomasboyt/generator-ember.git`
-3. `yo ember`
+2. `npm install -g git@github.com:thomasboyt/charcoal.git`
+3. `yo charcoal`
 4. `grunt server`
 
 A page with "Welcome to Ember.js" should appear in your browser.
 
 ## Extra Generators
 
-`yo ember:module` - Generates a new folder in your `app/` containing the following:
+`yo charcoal:module` - Generates a new folder in your `app/` containing the following:
 
 ```
 foo/
@@ -31,7 +31,7 @@ foo/
 
 ## Asset Compilation
 
-The `Gruntfile` output by this generator uses the task configuration defined in `yo_grunt.js`, which includes various tasks that are not enabled by default.
+The `Gruntfile` output by this generator uses the task configuration defined in `charcoal/grunt.js`, which includes various tasks that are not enabled by default.
 
 To enable these, install the relevant Grunt plugin (i.e. `grunt-contrib-less`) and add them to the build tasks defined in `Gruntfile.js`. More documentation on both aspects of that soon.
 

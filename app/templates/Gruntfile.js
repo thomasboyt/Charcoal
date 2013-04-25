@@ -5,7 +5,7 @@ module.exports = function (grunt) {
   // load all grunt tasks
   require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
-  var config = require('./yo_grunt').config
+  var config = require('./charcoal/grunt').config
 
   // configurable paths
   config.yeoman = {

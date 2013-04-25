@@ -66,7 +66,7 @@ EmberGenerator.prototype.editorConfig = function() {
 };
 
 EmberGenerator.prototype.gruntfile = function() {
-  this.template('yo_grunt.js');
+  this.template('charcoal/grunt.js');
   this.template('Gruntfile.js');
 };
 
@@ -106,5 +106,5 @@ EmberGenerator.prototype.all = function() {
   this.template('app/application.handlebars');
 
   this.template('README.md');
-  this.template('yo_doc.md');
+  this.template('charcoal/doc.md');
 };

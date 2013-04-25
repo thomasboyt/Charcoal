@@ -1,5 +1,5 @@
 # <%= _.titleize(appname) %>
 
-A new Ember.js application created with Yeoman.
+A new Ember.js application created with [Charcoal](https://github.com/thomasboyt/charcoal).
 
-For development information, see `yo_doc.md`.
+For development information, see `charcoal/readme.md`.

@@ -1,5 +1,5 @@
 {
-  "name": "generator-ember-alt",
+  "name": "Charcoal",
   "version": "0.1.0",
   "description": "Alternative Yeoman generator for Ember",
   "keywords": [
@@ -10,13 +10,13 @@
     "mvc",
     "ember"
   ],
-  "homepage": "https://github.com/thomasboyt/generator-ember",
-  "bugs": "https://github.com/thomasboyt/generator-ember/issues",
+  "homepage": "https://github.com/thomasboyt/charcoal",
+  "bugs": "https://github.com/thomasboyt/charcoal/issues",
   "author": "Thomas Boyt",
   "main": "app/index.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/thomasboyt/generator-ember.git"
+    "url": "git://github.com/thomasboyt/charcoal.git"
   },
   "scripts": {
     "test": "mocha --reporter spec"
