@@ -6,17 +6,6 @@ var yeoman = require('yeoman-generator');
 var EmberGenerator = module.exports = function EmberGenerator(args, options) {
   yeoman.generators.Base.apply(this, arguments);
 
-  // setup the test-framework property, Gruntfile template will need this
-  this.testFramework = options['test-framework'] || 'mocha';
-
-  // for hooks to resolve on mocha by default
-  if (!options['test-framework']) {
-    options['test-framework'] = 'mocha';
-  }
-
-  // resolved to mocha by default (could be switched to jasmine for instance)
-  this.hookFor('test-framework', { as: 'app' });
-
   this.indexFile = this.readFileAsString(path.join(this.sourceRoot(), 'index.html'));
   this.pkg = JSON.parse(this.readFileAsString(path.join(__dirname, '../package.json')));
 
@@ -115,4 +104,7 @@ EmberGenerator.prototype.all = function() {
   this.template('app/router.js');
   this.template('app/store.js');
   this.template('app/application.handlebars');
+
+  this.template('README.md');
+  this.template('yo_doc.md');
 };
