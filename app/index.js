@@ -3,7 +3,7 @@ var util = require('util');
 var path = require('path');
 var yeoman = require('yeoman-generator');
 
-var EmberGenerator = module.exports = function EmberGenerator(args, options) {
+var CharcoalGenerator = module.exports = function CharcoalGenerator(args, options) {
   yeoman.generators.Base.apply(this, arguments);
 
   this.indexFile = this.readFileAsString(path.join(this.sourceRoot(), 'index.html'));
@@ -14,13 +14,13 @@ var EmberGenerator = module.exports = function EmberGenerator(args, options) {
   });
 };
 
-util.inherits(EmberGenerator, yeoman.generators.Base);
+util.inherits(CharcoalGenerator, yeoman.generators.Base);
 
-EmberGenerator.prototype.welcome = function() {
+CharcoalGenerator.prototype.welcome = function() {
   console.log("Hold on while I generate '" + this._.titleize(this.appname) + "'!\n");
 };
 
-EmberGenerator.prototype.askFor = function() {
+CharcoalGenerator.prototype.askFor = function() {
   var cb = this.async();
 
   var prompts = [];
@@ -35,7 +35,7 @@ EmberGenerator.prototype.askFor = function() {
   }.bind(this));
 };
 
-EmberGenerator.prototype.createDirLayout = function() {
+CharcoalGenerator.prototype.createDirLayout = function() {
   this.mkdir('app');
   this.mkdir('assets');
   this.mkdir('assets/styles');
@@ -43,34 +43,34 @@ EmberGenerator.prototype.createDirLayout = function() {
   this.mkdir('assets/js');
 };
 
-EmberGenerator.prototype.git = function() {
+CharcoalGenerator.prototype.git = function() {
   this.copy('gitignore', '.gitignore');
   this.copy('gitattributes', '.gitattributes');
 };
 
-EmberGenerator.prototype.bower = function() {
+CharcoalGenerator.prototype.bower = function() {
   this.copy('bowerrc', '.bowerrc');
   this.template('_component.json', 'component.json');
 };
 
-EmberGenerator.prototype.packageFile = function() {
+CharcoalGenerator.prototype.packageFile = function() {
   this.copy('_package.json', 'package.json');
 };
 
-EmberGenerator.prototype.jshint = function() {
+CharcoalGenerator.prototype.jshint = function() {
   this.copy('jshintrc', '.jshintrc');
 };
 
-EmberGenerator.prototype.editorConfig = function() {
+CharcoalGenerator.prototype.editorConfig = function() {
   this.copy('editorconfig', '.editorconfig');
 };
 
-EmberGenerator.prototype.gruntfile = function() {
+CharcoalGenerator.prototype.gruntfile = function() {
   this.template('charcoal/grunt.js');
   this.template('Gruntfile.js');
 };
 
-EmberGenerator.prototype.writeIndex = function() {
+CharcoalGenerator.prototype.writeIndex = function() {
   var mainCssFiles = [];
   mainCssFiles.push('assets/styles/normalize.css');
   mainCssFiles.push('assets/styles/style.css');
@@ -90,7 +90,7 @@ EmberGenerator.prototype.writeIndex = function() {
   ], null, ['app', '.tmp']);
 };
 
-EmberGenerator.prototype.all = function() {
+CharcoalGenerator.prototype.all = function() {
   this.write('app/index.html', this.indexFile);
 
   this.copy('styles/normalize.css', 'assets/styles/normalize.css');
