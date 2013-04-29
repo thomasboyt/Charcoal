@@ -13,7 +13,7 @@ require("modules/*/route");
 <%= namespace %>.IndexModel.FIXTURES = [
   {
     text: "Ember.js",
-    url: "http://emberjs.com", 
+    url: "http://emberjs.com",
     id: 1
   },
   {
