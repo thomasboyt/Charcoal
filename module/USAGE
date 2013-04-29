@@ -9,4 +9,4 @@ Example:
         app/modules/my_thing/model.js
         app/modules/my_thing/route.js
         app/modules/my_thing/view.js
-        app/modules/my_thing/template.handlebars
+        app/modules/my_thing/my_thing.handlebars
