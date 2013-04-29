@@ -1,10 +1,10 @@
-// Generated on <%= (new Date).toISOString().split('T')[0] %> using <%= pkg.name %> <%= pkg.version %>
 'use strict';
 
 module.exports = function (grunt) {
   // load all grunt tasks
   require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
+  // load the default grunt configuration
   var config = require('./charcoal/grunt').config;
 
   // configurable paths
@@ -36,7 +36,7 @@ module.exports = function (grunt) {
     'clean:server',
     'concurrent:test',
     'connect:test',
-    'mocha'
+    'jasmine'
   ]);
 
   grunt.registerTask('build', [
