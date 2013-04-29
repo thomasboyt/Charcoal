@@ -2,7 +2,7 @@
 
 This an alternative Ember generator forked from [Yeoman's offical Ember Generator](https://github.com/yeoman/generator-ember). 
 
-This generator creates a new Ember project that uses Bower to handle dependencies and builds with [Trek's Grunt-Neuter task](https://github.com/trek/grunt-neuter). It uses a "module" pattern for the file structure rather than the traditional controller, model, view, route, and template folders. A longer guide on using this generator is coming soon, but if you're familar with the parts involved, feel free to use it :)
+This generator creates a new Ember project that uses Bower to handle dependencies and builds with [Trek's Grunt-Neuter task](https://github.com/trek/grunt-neuter). It uses a "module" pattern for the file structure rather than the traditional controller, model, view, route, and template folders. 
 
 What Charcoal has:
 
@@ -13,8 +13,9 @@ What Charcoal has:
 
 What Charcoal does not have:
 
-* A bunch of command-line arguments you will never remember to use when generating things that end up saving you zero time.
+* A bunch of extra command-line arguments for generating things. I mean, who wants to scaffold out an entire model on the command line? Gah. That's what writing code is for!
 * Extra static asset tasks that you'll just end up customizing the hell out of anyways.
+* Test generators. This is because I'm trying to stay testing framework-independent, and would rather not have to make three different generators for Jasmine, Mocha, and QUnit. I might re-evaluate this in the future.
 
 What Charcoal does not have *yet*:
 
