@@ -258,16 +258,18 @@ module.exports = {
       server: [
         'ember_templates',
         'coffee:dist',
-        'neuter',
-        'copy',
+        'neuter:app',
+        'copy:server',
       ],
       test: [
+        'ember_templates',
         'coffee',
+        'neuter',
       ],
       dist: [
         'ember_templates',
-        'neuter',
-        'copy',
+        'neuter:app',
+        'copy:server',
         'coffee',
         'imagemin',
         'svgmin',
@@ -295,12 +297,19 @@ module.exports = {
     },
 
     neuter: {
-      options: {
-        filepathTransform: function(filepath){ return template.process('<%%= yeoman.app %>/') + filepath; }
-      },
-      server: {
+      app: {
+        options: {
+          filepathTransform: function(filepath){ return template.process('<%%= yeoman.app %>/') + filepath; }
+        },
         src: '<%%= yeoman.app %>/app.js',
         dest: 'tmp/app/app.js'
+      },
+      test: {
+        options: {
+          filepathTransform: function(filepath){ return template.process('test/') + filepath; }
+        },
+        src: 'test/main.js',
+        dest: 'tmp/spec/spec.js'
       }
     },
 
@@ -310,6 +319,14 @@ module.exports = {
           { dest: 'tmp/index.html', src: ['app/index.html'] },
           { expand: true, dest: 'tmp/', src: ['assets/**'] },
           { expand: true, dest: 'tmp/', src: ['components/**'] },
+        ],
+        options: {
+          includeSourceURL: true
+        }
+      },
+      test: {
+        files: [
+          { dest: 'tmp/index.html', src: ['test/index.html'] }
         ],
         options: {
           includeSourceURL: true

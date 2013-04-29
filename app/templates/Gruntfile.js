@@ -35,8 +35,10 @@ module.exports = function (grunt) {
   grunt.registerTask('test', [
     'clean:server',
     'concurrent:test',
+    'copy:server',
+    'copy:test',
     'connect:test',
-    'jasmine'
+    'mocha'
   ]);
 
   grunt.registerTask('build', [
@@ -46,7 +48,7 @@ module.exports = function (grunt) {
     'cssmin',
     'concat',
     'uglify',
-    'copy',
+    'copy:server',
     'rev',
     'usemin'
   ]);

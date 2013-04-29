@@ -80,7 +80,14 @@ CharcoalGenerator.prototype.editorConfig = function() {
 
 CharcoalGenerator.prototype.gruntfile = function() {
   this.template('charcoal/grunt.js');
+  this.template('charcoal/readme.md');
   this.template('Gruntfile.js');
+};
+
+CharcoalGenerator.prototype.mochaTests = function() {
+  this.template('test/index.html');
+  this.template('test/main.js');
+  this.template('test/spec/index_spec.js');
 };
 
 CharcoalGenerator.prototype.writeIndex = function() {
@@ -118,20 +125,23 @@ CharcoalGenerator.prototype.all = function() {
   this.namespace = this._.classify(this.appname);
   this.write('app/index.html', this.indexFile);
 
+  // Styles
   this.copy('styles/normalize.css', 'assets/styles/normalize.css');
   this.copy('styles/style.css', 'assets/styles/style.css');
 
+  // Example Module
   this.template('app/modules/index/controller.js');
   this.template('app/modules/index/model.js');
   this.template('app/modules/index/route.js');
   this.template('app/modules/index/view.js');
   this.template('app/modules/index/index.handlebars');
   
+  // app/ files
   this.template('app/app.js');
   this.template('app/router.js');
   this.template('app/store.js');
   this.template('app/application.handlebars');
 
+  // Generated docs
   this.template('README.md');
-  this.template('charcoal/readme.md');
 };
