@@ -1,1 +1,7 @@
-{{text}}
+You are now rolling with the following technologies:
+
+<ul>
+  {{#each content}}
+  <li><a {{bindAttr href="url"}}>{{text}}</a></li>
+  {{/each}}
+</ul>

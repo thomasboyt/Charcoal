@@ -1,8 +1,6 @@
 <%= namespace %>.IndexRoute = Ember.Route.extend({
-  model: function() {
-    return Ember.Object.create({
-      text: "Hello World!"
-    });
+  setupController: function (controller) {
+    controller.set("content", <%= namespace %>.IndexModel.find());
   }
 });
 

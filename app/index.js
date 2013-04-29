@@ -8,7 +8,7 @@ var CharcoalGenerator = module.exports = function CharcoalGenerator(args, option
 
   this.indexFile = this.readFileAsString(path.join(this.sourceRoot(), 'index.html'));
   this.pkg = JSON.parse(this.readFileAsString(path.join(__dirname, '../package.json')));
-
+  
   this.on('end', function () {
     this.installDependencies({ skipInstall: options['skip-install'] });
   });
@@ -17,7 +17,9 @@ var CharcoalGenerator = module.exports = function CharcoalGenerator(args, option
 util.inherits(CharcoalGenerator, yeoman.generators.Base);
 
 CharcoalGenerator.prototype.welcome = function() {
-  console.log("Hold on while I generate '" + this._.titleize(this.appname) + "'!\n");
+  this.log('This generator will generate a new Ember application called '
+           + this._.classify(this.appname) + ' in the folder ' 
+           + this.env.cwd + '.');
 };
 
 CharcoalGenerator.prototype.askFor = function() {
@@ -25,13 +27,21 @@ CharcoalGenerator.prototype.askFor = function() {
 
   var prompts = [];
 
+  prompts.push({
+    name: 'continue',
+    message: 'Do you want to continue?',
+    default: 'Y/n',
+  });
+
   this.prompt(prompts, function (err, props) {
     if (err) {
       return this.emit('error', err);
     }
 
-    this.namespace = this._.classify(this.appname);
-    cb();
+    if (props.continue.match(/y/i)) {
+      cb();
+    }
+
   }.bind(this));
 };
 
@@ -105,12 +115,16 @@ CharcoalGenerator.prototype.writeIndex = function() {
 };
 
 CharcoalGenerator.prototype.all = function() {
+  this.namespace = this._.classify(this.appname);
   this.write('app/index.html', this.indexFile);
 
   this.copy('styles/normalize.css', 'assets/styles/normalize.css');
   this.copy('styles/style.css', 'assets/styles/style.css');
 
+  this.template('app/modules/index/controller.js');
+  this.template('app/modules/index/model.js');
   this.template('app/modules/index/route.js');
+  this.template('app/modules/index/view.js');
   this.template('app/modules/index/index.handlebars');
   
   this.template('app/app.js');
