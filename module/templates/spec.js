@@ -1,5 +1,13 @@
 describe("<%= _.titleize(name) %>", function() {
-  it("should do something", function() {
+  beforeEach(function () {
+    Ember.run(<%= namespace %>, <%= namespace %>.advanceReadiness);
+  });
+  afterEach(function () {
+    <%= namespace %>.reset();
+  });
+
+  it("does something", function(done) {
     // put your assertions here
+    done();
   });
 });
