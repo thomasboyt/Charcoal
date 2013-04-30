@@ -7,11 +7,9 @@ module.exports = function (grunt) {
   // load the default grunt configuration
   var config = require('./charcoal/grunt').config;
 
-  // configurable paths
-  config.yeoman = {
-    app: 'app',
-    dist: 'dist'
-  };
+  // if you'd like to modify the default grunt config, do it here
+  // for example:
+  // config.less = { ... }
 
   grunt.initConfig(config);
 

@@ -43,13 +43,11 @@ Usually, you'll be running one of three tasks:
 
 These tasks simply run a variety of other tasks. These can be modified how you like.
 
-For example, if you'd rather use Mocha instead of the default Jasmine to run your tests:
+For example, if you'd like to add LESS compilation:
 
-* `npm install grunt-mocha` (and don't forget to add it to your `package.json` dependencies)
-* Configure `grunt-mocha` in Grunt according to its documentation
-* Replace the `jasmine` task in the `test` definition with `mocha`
-
-This can be extended as much as needed. Want to add LESS compilation? Simply install `grunt-contrib-less`, configure it, and add it to your `server` and `build` tasks. You're free to define as many custom tasks as you'd like.
+* `npm install grunt-contrib-less --save-dev` 
+* Configure the task in your Gruntfile (`config.less = {...}`)
+* Make sure your multitasks compile LESS, and add it to `config.watch`
 
 ## Writing Applications
 

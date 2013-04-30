@@ -18,13 +18,13 @@ module.exports = {
     watch: {
       ember_templates: {
         files: [
-          '<%%= yeoman.app %>/**/*.hbs',
-          '<%%= yeoman.app %>/**/*.handlebars'
+          'app/**/*.hbs',
+          'app/**/*.handlebars'
         ],
         tasks: ['ember_templates', 'livereload']
       },
       coffee: {
-        files: ['<%%= yeoman.app %>/{,*/}*.coffee'],
+        files: ['app/{,*/}*.coffee'],
         tasks: ['coffee:dist']
       },
       coffeeTest: {
@@ -33,9 +33,9 @@ module.exports = {
       },
       livereload: {
         files: [
-          '<%%= yeoman.app %>/*.html',
-          '{tmp,<%%= yeoman.app %>}/assets/{,*/}*.css',
-          '{tmp,<%%= yeoman.app %>}/{,*/}*.js',
+          'app/*.html',
+          '{tmp,app}/assets/{,*/}*.css',
+          '{tmp,app}/{,*/}*.js',
           'assets/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
         ],
         tasks: ['livereload']
@@ -43,7 +43,7 @@ module.exports = {
       neuter: {
         files: [
           'test/**/*.js',
-          '<%%= yeoman.app %>/**/*.js'
+          'app/**/*.js'
         ],
         tasks: ['neuter']
       }
@@ -104,8 +104,8 @@ module.exports = {
           dot: true,
           src: [
             'tmp',
-            '<%%= yeoman.dist %>/*',
-            '!<%%= yeoman.dist %>/.git*'
+            'dist/*',
+            '!dist/.git*'
           ]
         }]
       },
@@ -117,7 +117,7 @@ module.exports = {
       },
       all: [
         'Gruntfile.js',
-        '<%%= yeoman.app %>/{,*/}*.js',
+        'app/{,*/}*.js',
         'test/spec/{,*/}*.js'
       ]
     },
@@ -147,7 +147,7 @@ module.exports = {
       dist: {
         files: [{
           expand: true,
-          cwd: '<%%= yeoman.app %>/scripts',
+          cwd: 'app/scripts',
           src: '{,*/}*.coffee',
           dest: 'tmp/scripts',
           ext: '.js'
@@ -170,10 +170,10 @@ module.exports = {
       dist: {
         files: {
           src: [
-            '<%%= yeoman.dist %>/scripts/{,*/}*.js',
-            '<%%= yeoman.dist %>/styles/{,*/}*.css',
-            '<%%= yeoman.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp}',
-            '<%%= yeoman.dist %>/styles/fonts/*'
+            'dist/scripts/{,*/}*.js',
+            'dist/styles/{,*/}*.css',
+            'dist/images/{,*/}*.{png,jpg,jpeg,gif,webp}',
+            'dist/styles/fonts/*'
           ]
         }
       }
@@ -182,16 +182,16 @@ module.exports = {
     // Usemin
     // ------------------
     useminPrepare: {
-      html: '<%%= yeoman.app %>/index.html',
+      html: 'app/index.html',
       options: {
-        dest: '<%%= yeoman.dist %>'
+        dest: 'dist'
       }
     },
     usemin: {
-      html: ['<%%= yeoman.dist %>/{,*/}*.html'],
-      css: ['<%%= yeoman.dist %>/styles/{,*/}*.css'],
+      html: ['dist/{,*/}*.html'],
+      css: ['dist/styles/{,*/}*.css'],
       options: {
-        dirs: ['<%%= yeoman.dist %>'],
+        dirs: ['dist'],
       }
     },
 
@@ -201,9 +201,9 @@ module.exports = {
       dist: {
         files: [{
           expand: true,
-          cwd: '<%%= yeoman.app %>/images',
+          cwd: 'app/images',
           src: '{,*/}*.{png,jpg,jpeg}',
-          dest: '<%%= yeoman.dist %>/images'
+          dest: 'dist/images'
         }]
       }
     },
@@ -213,7 +213,7 @@ module.exports = {
           expand: true,
           cwd: 'assets/images',
           src: '{,*/}*.svg',
-          dest: '<%%= yeoman.dist %>/images'
+          dest: 'dist/images'
         }]
       }
     },
@@ -223,7 +223,7 @@ module.exports = {
     cssmin: {
       dist: {
         files: {
-          '<%%= yeoman.dist %>/styles/main.css': [
+          'dist/styles/main.css': [
             'assets/styles/{,*/}*.css'
           ]
         }
@@ -233,9 +233,9 @@ module.exports = {
       dist: {
         files: [{
           expand: true,
-          cwd: '<%%= yeoman.app %>',
+          cwd: 'app',
           src: '*.html',
-          dest: '<%%= yeoman.dist %>'
+          dest: 'dist'
         }]
       }
     },
@@ -247,8 +247,8 @@ module.exports = {
         files: [{
           expand: true,
           dot: true,
-          cwd: '<%%= yeoman.app %>',
-          dest: '<%%= yeoman.dist %>',
+          cwd: 'app',
+          dest: 'dist',
           src: [
             '*.{ico,txt}',
             '.htaccess',
@@ -296,8 +296,8 @@ module.exports = {
       dist: {
         files: {
           'tmp/app/compiled-templates.js': [
-            '<%%= yeoman.app %>/**/*.hbs',
-            '<%%= yeoman.app %>/**/*.handlebars'
+            'app/**/*.hbs',
+            'app/**/*.handlebars'
           ]
         }
       }
@@ -306,9 +306,9 @@ module.exports = {
     neuter: {
       app: {
         options: {
-          filepathTransform: function(filepath){ return template.process('<%%= yeoman.app %>/') + filepath; }
+          filepathTransform: function(filepath){ return template.process('app/') + filepath; }
         },
-        src: '<%%= yeoman.app %>/app.js',
+        src: 'app/app.js',
         dest: 'tmp/app/app.js'
       },
       test: {
