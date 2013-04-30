@@ -10,13 +10,9 @@ What Charcoal has:
 * A default set of smart conventions and Grunt tasks to support it.
 * A generator to create new Ember modules.
 * [A guide to building projects with Yeoman+Grunt+Bower+Charcoal.](https://github.com/thomasboyt/charcoal/blob/master/app/templates/charcoal/readme.md)
+* Preconfigured but disabled-by-default static assets tasks. Use only the dependencies you need.
 
 What Charcoal does not have:
-
-* A bunch of extra command-line arguments for generating things. I mean, who wants to scaffold out an entire model on the command line? Gah. That's what writing code is for!
-* Extra static asset tasks that you'll just end up customizing the hell out of anyways.
-
-What Charcoal does not have *yet*:
 
 Lots of things! See [the issues page](https://github.com/thomasboyt/charcoal/issues) for a short-term roadmap. I try to keep my development as transparent as possible.
 
