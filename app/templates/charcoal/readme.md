@@ -6,7 +6,7 @@ This project was generated with [Charcoal](https://github.com/thomasboyt/charcoa
 
 ## Getting Started
 
-If you just cloned this repo, you'll need some dependencies. (if you just created this project with `yo charcoal`, skip this section).
+If you just cloned this repo, you'll need some dependencies. **(if you just created this project with `yo charcoal`, skip this section)**.
 
 First, make sure you have installed [node.js](http://nodejs.org) and [npm](https://npmjs.org/). After that, you'll want to install the Grunt CLI client and Bower with:
 
