@@ -35,7 +35,7 @@ Your environment is now all set up!
 
 Applications generated with Charcoal come with a variety of pre-configured tasks (as seen in `/charcoal/grunt.js`). Rather than edit these directly, it's recommended to edit tasks in the actual `Gruntfile.js` in the root of your project. 
 
-Usually, you'll be running one of three tasks:
+Usually, you'll be running one of these multitasks:
 
 ### `grunt server`
 
@@ -53,19 +53,15 @@ This command runs your tests in a web browser. Like `grunt server`, it will rebu
 
 This command builds your application to the `dist/` folder for distribution.
 
-### Customization
-
-The above tasks simply run a variety of other tasks. These can be modified how you like.
-
-For example, if you'd like to add LESS compilation:
-
-* `npm install grunt-contrib-less --save-dev` 
-* Configure the task in your Gruntfile (`config.less = {...}`)
-* Make sure your multitasks compile LESS, and add it to `config.watch`
-
 ## Preconfigured Tasks
 
 These are tasks that are configured in Charcoal's default Grunt configuration, but will need to be added to your build tasks in your project's `Gruntfile` to use. The dependencies for them will also need be installed (with `npm install <dep> --save-dev`).
+
+For example, to enable LESS support when you build:
+
+* Install the dependency in its section below
+* Add `less:dev` to your `server`, `test`, and `test-server` tasks
+* Add `less:dist` to your `build` task
 
 ### LESS
 
