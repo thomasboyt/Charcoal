@@ -192,6 +192,30 @@ module.exports = {
       }
     },
 
+    sass: {
+      dev: {
+        files: [{
+          expand: true,
+          cwd: "assets/styles",
+          src: ["**/*.scss", "**/*.sass"],
+          dest: "tmp/assets/styles",
+          ext: ".css"
+        }]
+      },
+      dist: {
+        files: [{
+          expand: true,
+          cwd: "assets/styles",
+          src: ["**/*.scss", "**/*.sass"],
+          dest: "dist/assets/styles",
+          ext: ".css"
+        }],
+        options: {
+          style: "compress"
+        }
+      }
+    },
+
     // Revisioning
     // ------------------
     rev: {

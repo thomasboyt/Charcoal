@@ -72,6 +72,10 @@ These are tasks that are configured in Charcoal's default Grunt configuration, b
 
     Will take `assets/styles/foo.less` and compile it to `tmp/assets/styles/foo.css` and `dist/assets/styles/foo.css`
 
+* SASS
+    `npm install grunt-contrib-sass --save-dev`
+
+    Will take `assets/styles/foo.scss` and compile it to `tmp/assets/styles/foo.css` and `dist/assets/styles/foo.css`
 ## Writing Applications
 
 ### Using grunt-neuter
