@@ -47,6 +47,7 @@ module.exports = function (grunt) {
     'copy:server',
     'copy:test',
     'connect:test',
+    'open',
     'watch'
   ]);
 
