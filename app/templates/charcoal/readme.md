@@ -37,11 +37,25 @@ Applications generated with Charcoal come with a variety of pre-configured tasks
 
 Usually, you'll be running one of three tasks:
 
-* `grunt server` - Build unminifed assets to `tmp/` and host a static server.
-* `grunt build` - Build minified assets for distribution.
-* `grunt test` - Run tests.
+### `grunt server`
 
-These tasks simply run a variety of other tasks. These can be modified how you like.
+This command builds unminified assets to the `tmp/` folder and hosts a static server. This server has `watch` and `livereload` enabled, so your assets will rebuild and your browser will refresh on every save.
+
+### `grunt test`
+
+This command runs your tests in PhantomJS. By default, it uses Mocha as the test-runner, but you can swap it out for Jasmine or QUnit fairly easily.
+
+### `grunt test-server`
+
+This command runs your tests in a web browser. Like `grunt server`, it will rebuild and refresh whenever you save your app's code or a test.
+
+### `grunt build`
+
+This command builds your application to the `dist/` folder for distribution.
+
+### Customization
+
+The above tasks simply run a variety of other tasks. These can be modified how you like.
 
 For example, if you'd like to add LESS compilation:
 

@@ -15,7 +15,6 @@ What Charcoal does not have:
 
 * A bunch of extra command-line arguments for generating things. I mean, who wants to scaffold out an entire model on the command line? Gah. That's what writing code is for!
 * Extra static asset tasks that you'll just end up customizing the hell out of anyways.
-* Test generators. This is because I'm trying to stay testing framework-independent, and would rather not have to make three different generators for Jasmine, Mocha, and QUnit. I might re-evaluate this in the future.
 
 What Charcoal does not have *yet*:
 
