@@ -12,6 +12,8 @@ var CharcoalGenerator = module.exports = function CharcoalGenerator(args, option
   this.on('end', function () {
     this.installDependencies({ skipInstall: options['skip-install'] });
   });
+
+  this.namespace = this._.classify(this.appname);
 };
 
 util.inherits(CharcoalGenerator, yeoman.generators.Base);
@@ -122,7 +124,6 @@ CharcoalGenerator.prototype.writeIndex = function() {
 };
 
 CharcoalGenerator.prototype.all = function() {
-  this.namespace = this._.classify(this.appname);
   this.write('app/index.html', this.indexFile);
 
   // Styles
