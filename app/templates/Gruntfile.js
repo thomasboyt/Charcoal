@@ -4,12 +4,38 @@ module.exports = function (grunt) {
   // load all grunt tasks
   require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
-  // load the default grunt configuration
+  // load the default charcoal grunt configuration
   var config = require('./charcoal/grunt').config;
 
   // if you'd like to modify the default grunt config, do it here
   // for example:
   // config.less = { ... }
+  
+  // concurrent tasks. customize this instead of the multitasks for faster 
+  // builds
+  config.concurrent = {
+    server: [
+      'ember_templates',
+      'coffee:dist',
+      'neuter:app',
+      'copy:dev',
+    ],
+    test: [
+      'ember_templates',
+      'coffee',
+      'neuter',
+    ],
+    dist: [
+      'ember_templates',
+      'neuter:app',
+      'copy:dev',
+      'copy:dist',
+      'coffee',
+      'imagemin',
+      'svgmin',
+      'htmlmin'
+    ]
+  };
 
   grunt.initConfig(config);
 
@@ -33,7 +59,7 @@ module.exports = function (grunt) {
   grunt.registerTask('test', [
     'clean:server',
     'concurrent:test',
-    'copy:server',
+    'copy:dev',
     'copy:test',
     'connect:test',
     'mocha'
@@ -42,7 +68,7 @@ module.exports = function (grunt) {
   grunt.registerTask('test-server', [
     'clean:server',
     'concurrent:test',
-    'copy:server',
+    'copy:dev',
     'copy:test',
     'connect:test',
     'open',
@@ -56,7 +82,7 @@ module.exports = function (grunt) {
     'cssmin',
     'concat',
     'uglify',
-    'copy:server',
+    'copy:dev',
     'rev',
     'usemin'
   ]);

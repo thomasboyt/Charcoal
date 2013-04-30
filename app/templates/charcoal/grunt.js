@@ -292,31 +292,6 @@ module.exports = {
       }
     },
 
-    // Concurrency
-    // ------------------
-    concurrent: {
-      server: [
-        'ember_templates',
-        'coffee:dist',
-        'neuter:app',
-        'copy:server',
-      ],
-      test: [
-        'ember_templates',
-        'coffee',
-        'neuter',
-      ],
-      dist: [
-        'ember_templates',
-        'neuter:app',
-        'copy:server',
-        'coffee',
-        'imagemin',
-        'svgmin',
-        'htmlmin'
-      ]
-    },
-
     // Ember-specific tasks
     // ------------------
     ember_templates: {
@@ -326,7 +301,7 @@ module.exports = {
           return sourceFile.match(new RegExp("(?!.*/)(.*)"))[0];
         }
       },
-      dist: {
+      dev: {
         files: {
           'tmp/app/compiled-templates.js': [
             'app/**/*.hbs',
@@ -354,7 +329,7 @@ module.exports = {
     },
 
     copy: {
-      server: {
+      dev: {
         files: [
           { dest: 'tmp/index.html', src: ['app/index.html'] },
           { expand: true, dest: 'tmp/', src: ['assets/**'] },
