@@ -39,6 +39,13 @@ module.exports = {
           'assets/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
         ],
         tasks: ['livereload']
+      },
+      neuter: {
+        files: [
+          'test/**/*.js',
+          '<%%= yeoman.app %>/**/*.js'
+        ],
+        tasks: ['neuter']
       }
     },
 
