@@ -8,7 +8,7 @@ describe("Index", function() {
   });
   
   it("contains the words 'Welcome to Ember.js on Charcoal'", function(done) {
-    // ember.js's test promises call start(), which is equivalent to mocha's 
+    // ember.js's test promises call start(), which is equivalent to mocha's
     // done(), so we alias it
     window.start = done;
 
