@@ -31,6 +31,10 @@ module.exports = {
         files: ['test/spec/{,*/}*.coffee'],
         tasks: ['coffee:test']
       },
+      less: {
+        files: ['assets/styles/**/*.less'],
+        tasks: ['less:dev']
+      },
       livereload: {
         files: [
           'app/*.html',
@@ -161,6 +165,30 @@ module.exports = {
           dest: 'tmp/spec',
           ext: '.js'
         }]
+      }
+    },
+
+    less: {
+      dev: {
+        files: [{
+          expand: true,
+          cwd: "assets/styles",
+          src: ["**/*.less"],
+          dest: "tmp/assets/styles",
+          ext: ".css"
+        }]
+      },
+      dist: {
+        files: [{
+          expand: true,
+          cwd: "assets/styles",
+          src: ["**/*.less"],
+          dest: "dist/assets/styles",
+          ext: ".css"
+        }],
+        options: {
+          yuicompress: true
+        }
       }
     },
 

@@ -63,6 +63,15 @@ For example, if you'd like to add LESS compilation:
 * Configure the task in your Gruntfile (`config.less = {...}`)
 * Make sure your multitasks compile LESS, and add it to `config.watch`
 
+### Preconfigured Tasks
+
+These are tasks that are configured in Charcoal's default Grunt configuration, but will need to be added to your build tasks in your project's `Gruntfile` to use. The dependencies for them will also need be installed (with `npm install <dep> --save-dev`).
+
+* LESS
+    `npm install grunt-contrib-less --save-dev`
+
+    Will take `assets/styles/foo.less` and compile it to `tmp/assets/styles/foo.css` and `dist/assets/styles/foo.css`
+
 ## Writing Applications
 
 ### Using grunt-neuter
