@@ -1,8 +1,8 @@
 # Developing with Yeoman & Grunt
 
-*This file is automatically added to your repo when you create it with `yo charcoal`. It is strongly encouraged to keep it here so that users unfamilar with the build process can easily get up and running with your project!*
+*This file is automatically added to your project when you create it with `yo charcoal`. It is strongly encouraged to keep it here so that users unfamilar with the build process can easily get up and running with your project!*
 
-This project was generated with [Charcoal](https://github.com/thomasboyt/charcoal), a [Yeoman](http://yeoman.io) generator which creates scaffolding for Ember.js projects. It uses [Bower](http://bower.io/) for managing browser dependencies and [Grunt](http://gruntjs.com/) to build. If you're unfamilar with any or all of these tools, read this document to get up and running with development on this repo.
+This project was generated with [Charcoal](https://github.com/thomasboyt/charcoal), a [Yeoman](http://yeoman.io) generator which creates scaffolding for Ember.js projects. It uses [Bower](http://bower.io/) for managing browser dependencies and [Grunt](http://gruntjs.com/) to build. If you're unfamilar with any of these tools, read this document to get up and running with development on this repo.
 
 ## Getting Started
 
@@ -15,7 +15,7 @@ npm install -g grunt-cli
 npm install -g bower
 ```
 
-Then install both Grunt dependencies and Bower dependencies with:
+Then install both Grunt dependencies and Bower dependencies by running the following commands in the root directory of this project:
 
 ```shell
 npm install
@@ -29,7 +29,7 @@ npm install -g yeoman
 npm install -g generator-charcoal
 ```
 
-Your environment is now all set up! 
+Your environment is now all set up!
 
 ## Using Grunt
 
@@ -59,9 +59,10 @@ These are tasks that are configured in Charcoal's default Grunt configuration, b
 
 For example, to enable LESS support when you build:
 
-* Install the dependency in its section below
-* Add `less:dev` to your `server`, `test`, and `test-server` tasks
-* Add `less:dist` to your `build` task
+* Install the dependency as listed in its section below
+* Add `less:dev` to your `server`, `test`, and `test-server` multitasks
+* Add `less:dist` to your `build` multitask
+* Alternatively, to speed up build times, you could add `less:dev` and `less:dist` to their respective subtasks in the `concurrent` task. 
 
 ### LESS
 
@@ -79,22 +80,26 @@ Default configuration: Will take `assets/styles/foo.scss` and compile it to `tmp
 
 ### Using grunt-neuter
 
-`grunt-neuter` is a plugin for managing "dependencies" between your app's various files. Unlike RequireJS or Browserify or any number of other dependency management systems, `grunt-neuter` is only interested in concatinating your files together in the proper order. It has only one function you need to worry about: a global `require()` processor. 
+[`grunt-neuter`](https://github.com/trek/grunt-neuter) is a plugin for managing "dependencies" between your application's various scripts. Unlike RequireJS or Browserify or any number of other dependency management systems, `grunt-neuter` is only interested in concatinating your files together in the proper order. It has only one function you need to worry about: a global `require()` processor. 
 
 With the default configuration, files should be referenced relative to your `app/` folder. For example, if you wanted to require `/app/foo/bar.js`, you'd simply say `require(foo/bar)`.
 
 ### Generating modules
 
-If you installed Yeoman and `generator-charcoal`, you can easily generate Ember "modules." These are simply folders grouping related functionality. An example module might be:
+If you installed Yeoman and `generator-charcoal`, you can easily generate Ember "modules." These are simply folders grouping related functionality. An example module, generated with the command `yo charcoal:module my_module`, might be:
 
 ```
 app/
- |--- my_module/
-      |--- controller.js
-      |--- model.js
-      |--- route.js
-      |--- view.js
-      |--- my_module.handlebars
+ |--- modules/
+       |--- my_module/
+            |--- controller.js
+            |--- model.js
+            |--- route.js
+            |--- view.js
+            |--- my_module.handlebars
+test/
+ |--- specs/
+       |--- my_module_spec.js
 ```
 
 You can generate a module like this with `yo charcoal:module <module name>`. 
@@ -120,3 +125,5 @@ If you need to specify further dependencies, simply add a new `require()` defini
 Charcoal's default Gruntfile builds templates for you with the `ember_templates` task. This simply collects all `handlebars` or `hbs` files and compiles them to a second script that is added to your page. To reference a template in your app, just reference the name of the template (i.e. `my_module/my_template.handlebars` should be referenced as `my_template`).
 
 ## Using Bower
+
+**todo**
