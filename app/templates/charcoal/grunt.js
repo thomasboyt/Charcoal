@@ -117,8 +117,8 @@ module.exports = {
       },
       all: [
         'Gruntfile.js',
-        'app/{,*/}*.js',
-        'test/spec/{,*/}*.js'
+        'app/**/*.js',
+        'test/**/*.js'
       ]
     },
 

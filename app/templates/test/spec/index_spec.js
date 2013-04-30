@@ -6,7 +6,7 @@ describe("Index", function() {
     <%= namespace %>.reset();
     done();
   });
-  
+
   it("contains the words 'Welcome to Ember.js on Charcoal'", function(done) {
     // ember.js's test promises call start(), which is equivalent to mocha's
     // done(), so we alias it
