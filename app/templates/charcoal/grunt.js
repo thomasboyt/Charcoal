@@ -31,6 +31,10 @@ module.exports = {
         files: ['test/spec/{,*/}*.coffee'],
         tasks: ['coffee:test']
       },
+      css: {
+        files: ['assets/styles/**/*.css'],
+        tasks: ['copy:dev']
+      },
       less: {
         files: ['assets/styles/**/*.less'],
         tasks: ['less:dev']
