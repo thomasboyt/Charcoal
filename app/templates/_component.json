@@ -5,7 +5,7 @@
     "jquery": "~2.0.0",
     "handlebars": "~1.0.0-rc.3",
     "ember": "~1.0.0-rc.3",
-    "ember-data": "http://builds.emberjs.com.s3.amazonaws.com/ember-data-latest.js"
+    "ember-data": "http://builds.emberjs.com.s3.amazonaws.com/ember-data-32747f9c5ae4004b792c5487d33d4329113604e0.js"
   },
   "devDependencies": {
     "mocha": "~1.9.0",
