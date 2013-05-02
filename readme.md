@@ -18,27 +18,20 @@ Lots of things! See [the issues page](https://github.com/thomasboyt/charcoal/iss
 
 ## Usage
 
-Execute these steps from the command line, one after another:
+First, if you haven't already, install Yeoman and Charcoal:
 
-1. `mkdir webapp && cd webapp`
-2. `npm install -g git@github.com:thomasboyt/charcoal.git`
-3. `yo charcoal`
-4. `grunt server`
+```sh
+npm install -g yo
+npm install -g generator-charcoal
+``` 
 
-A page with "Welcome to Ember.js" should appear in your browser.
+After that:
 
-## Extra Generators
+1. Create a new project folder: `mkdir my_project && cd my_project`
+1. Run `yo charcoal` to generate a new project template
+1. Test to make sure it works with `grunt server`.
 
-`yo charcoal:module` - Generates a new folder in your `app/` containing the following:
-
-```
-foo/
-  |--- controller.js
-  |--- module.js
-  |--- route.js
-  |--- view.js
-  |--- foo.handlebars
-```
+A page with "Welcome to Ember.js" should appear in your browser. Refer to the [development guide](https://github.com/thomasboyt/charcoal/blob/master/app/templates/charcoal/readme.md) for further information :)
 
 ## Bower
 
