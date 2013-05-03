@@ -21,8 +21,7 @@ Lots of things! See [the issues page](https://github.com/thomasboyt/charcoal/iss
 First, if you haven't already, install Yeoman and Charcoal:
 
 ```sh
-npm install -g yo
-npm install -g generator-charcoal
+npm install -g yo generator-charcoal
 ``` 
 
 After that:
@@ -35,7 +34,7 @@ A page with "Welcome to Ember.js" should appear in your browser. Refer to the [d
 
 ## Bower
 
-The default Bower configuration includes JQuery, Handlebars, Ember, and Ember Data. The first three are all their latest stable revision, while Ember Data is always pulled from [ember-data-latest.js](http://builds.emberjs.com.s3.amazonaws.com/ember-data-latest.js).
+The default Bower configuration includes jQuery, Handlebars, Ember, and Ember Data. The first three are all their latest stable revision, while Ember Data is always pulled from [ember-data-latest.js](http://builds.emberjs.com.s3.amazonaws.com/ember-data-latest.js).
 
 ## Options
 
