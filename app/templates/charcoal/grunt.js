@@ -31,14 +31,24 @@ module.exports = {
         files: ['test/spec/{,*/}*.coffee'],
         tasks: ['coffee:test']
       },
-      css: {
-        files: ['assets/styles/**/*.css'],
+
+      // copy ALL the things! it's /tmp, so uncompiled assets being copied
+      // doesn't really matter too much.
+      assets: {
+        files: ['assets/**/*'],
         tasks: ['copy:dev']
       },
+
+      html: {
+        files: ['app/**/*.html'],
+        tasks: ['copy:dev']
+      },
+
       less: {
         files: ['assets/styles/**/*.less'],
         tasks: ['less:dev']
       },
+
       livereload: {
         files: [
           'app/*.html',
@@ -318,14 +328,16 @@ module.exports = {
     neuter: {
       app: {
         options: {
-          filepathTransform: function(filepath){ return template.process('app/') + filepath; }
+          filepathTransform: function(filepath){ return template.process('app/') + filepath; },
+          includeSourceURL: true
         },
         src: 'app/app.js',
         dest: 'tmp/app/app.js'
       },
       test: {
         options: {
-          filepathTransform: function(filepath){ return template.process('test/') + filepath; }
+          filepathTransform: function(filepath){ return template.process('test/') + filepath; },
+          includeSourceURL: true
         },
         src: 'test/main.js',
         dest: 'tmp/spec/spec.js'
