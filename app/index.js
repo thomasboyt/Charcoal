@@ -98,7 +98,7 @@ CharcoalGenerator.prototype.writeIndex = function() {
     fileType: 'css',
     optimizedPath: 'assets/styles/main.css',
     sourceFileList: [
-      'assets/styles/normalize.css',
+      'components/normalize-css/normalize.css',
       'assets/styles/style.css'
     ],
     searchPath: '.'
@@ -127,7 +127,6 @@ CharcoalGenerator.prototype.all = function() {
   this.write('app/index.html', this.indexFile);
 
   // Styles
-  this.copy('styles/normalize.css', 'assets/styles/normalize.css');
   this.copy('styles/style.css', 'assets/styles/style.css');
 
   // Example Module
