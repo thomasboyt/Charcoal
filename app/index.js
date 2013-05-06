@@ -8,7 +8,7 @@ var CharcoalGenerator = module.exports = function CharcoalGenerator(args, option
 
   this.indexFile = this.readFileAsString(path.join(this.sourceRoot(), 'index.html'));
   this.pkg = JSON.parse(this.readFileAsString(path.join(__dirname, '../package.json')));
-  
+
   this.on('end', function () {
     this.installDependencies({ skipInstall: options['skip-install'] });
   });
@@ -20,7 +20,7 @@ util.inherits(CharcoalGenerator, yeoman.generators.Base);
 
 CharcoalGenerator.prototype.welcome = function() {
   this.log('This generator will generate a new Ember application called '
-           + this._.classify(this.appname) + ' in the folder ' 
+           + this._.classify(this.appname) + ' in the folder '
            + this.env.cwd + '.');
 };
 
@@ -65,7 +65,7 @@ CharcoalGenerator.prototype.git = function() {
 
 CharcoalGenerator.prototype.bower = function() {
   this.copy('bowerrc', '.bowerrc');
-  this.template('_component.json', 'component.json');
+  this.template('_bower.json', 'bower.json');
 };
 
 CharcoalGenerator.prototype.packageFile = function() {
@@ -94,7 +94,7 @@ CharcoalGenerator.prototype.mochaTests = function() {
 
 CharcoalGenerator.prototype.writeIndex = function() {
   this.indexFile = this.appendFiles({
-    html: this.indexFile, 
+    html: this.indexFile,
     fileType: 'css',
     optimizedPath: 'assets/styles/main.css',
     sourceFileList: [
@@ -136,7 +136,7 @@ CharcoalGenerator.prototype.all = function() {
   this.template('app/modules/index/route.js');
   this.template('app/modules/index/view.js');
   this.template('app/modules/index/index.handlebars');
-  
+
   // app/ files
   this.template('app/app.js');
   this.template('app/router.js');
