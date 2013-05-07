@@ -310,9 +310,38 @@ module.exports = {
     // ------------------
     ember_templates: {
       options: {
+        
+        // this is a little more huge and inelegant than I wanted
+
+        // here are the rules:
+        // "app/application.handlebars" => "application"
+        // "app/modules/my_module/index.handlebars" => "my_module"
+        // "app/modules/my_module/foo.handlebars" => "my_module/foo"
+        // "app/templates/foo.handlebars" => "foo"
+        // "foo/wat" => "foo/wat"
         templateName: function (sourceFile) {
-          // this removes the directory structure, which may be unwanted behavior - hierarchy may be wanted.
-          return sourceFile.match(new RegExp("(?!.*/)(.*)"))[0];
+          var prefixRegex = new RegExp("(?:app/modules/|app/templates/|app/)(.*)");
+          var filename, match;
+
+          if ((match = sourceFile.match(prefixRegex)) && (filename = match[1])) {
+            var inModule = new RegExp("app/modules/").test(sourceFile);
+            if (inModule) {
+              // name w/o extension
+              var name = filename.match(/.*(?=\/)(.*)\.(?:.*)$/)[1].slice(1);
+
+              // find containing folder. somewhat inelegant, but man, regexes...
+              var folders = filename.match(/(.*?)\//g);
+              var folder = folders[folders.length - 1];
+              var moduleName = folder.slice(0, folder.length-1)
+
+              // app/modules/my_module/index.handlebars => "my_module"
+              if (name === "index") {
+                return moduleName;
+              }
+            }
+            return filename
+          }
+          return sourceFile;
         }
       },
       dev: {
