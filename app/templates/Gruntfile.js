@@ -10,7 +10,7 @@ module.exports = function (grunt) {
   // if you'd like to modify the default grunt config, do it here
   // for example:
   // config.less = { ... }
-  
+
   // concurrent tasks. customize this instead of the multitasks for faster 
   // builds
   config.concurrent = {
