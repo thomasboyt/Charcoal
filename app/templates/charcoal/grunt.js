@@ -63,7 +63,7 @@ module.exports = {
           'test/**/*.js',
           'app/**/*.js'
         ],
-        tasks: ['neuter']
+        tasks: ['neuter', 'copy:dev']
       }
     },
 
@@ -329,7 +329,7 @@ module.exports = {
       app: {
         options: {
           filepathTransform: function(filepath){ return template.process('app/') + filepath; },
-          includeSourceURL: true
+          includeSourceMap: true
         },
         src: 'app/app.js',
         dest: 'tmp/app/app.js'
@@ -337,7 +337,7 @@ module.exports = {
       test: {
         options: {
           filepathTransform: function(filepath){ return template.process('test/') + filepath; },
-          includeSourceURL: true
+          includeSourceMap: true
         },
         src: 'test/main.js',
         dest: 'tmp/spec/spec.js'
@@ -349,19 +349,17 @@ module.exports = {
         files: [
           { dest: 'tmp/index.html', src: ['app/index.html'] },
           { expand: true, dest: 'tmp/', src: ['assets/**'] },
+
+          // copy uncompiled app js to /tmp for debugging (source maps)
+          { expand: true, dest: 'tmp/app', src: ['app/**'] },
+
           { expand: true, dest: 'tmp/', src: ['components/**'] },
         ],
-        options: {
-          includeSourceURL: true
-        }
       },
       test: {
         files: [
           { dest: 'tmp/index.html', src: ['test/index.html'] }
         ],
-        options: {
-          includeSourceURL: true
-        }
       },
       dist: {
         files: [{
