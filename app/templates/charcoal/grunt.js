@@ -310,7 +310,6 @@ module.exports = {
     // ------------------
     ember_templates: {
       options: {
-        
         // this is a little more huge and inelegant than I wanted
 
         // here are the rules:
@@ -327,7 +326,7 @@ module.exports = {
             var inModule = new RegExp("app/modules/").test(sourceFile);
             if (inModule) {
               // name w/o extension
-              var name = filename.match(/.*(?=\/)(.*)\.(?:.*)$/)[1].slice(1);
+              var name = filename.match(/.*(?=\/)(.*)(?:.*)$/)[1].slice(1);
 
               // find containing folder. somewhat inelegant, but man, regexes...
               var folders = filename.match(/(.*?)\//g);
