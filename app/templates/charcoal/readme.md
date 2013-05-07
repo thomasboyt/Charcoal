@@ -122,7 +122,18 @@ If you need to specify further dependencies, simply add a new `require()` defini
 
 ### Using templates
 
-Charcoal's default Gruntfile builds templates for you with the `ember_templates` task. This simply collects all `handlebars` or `hbs` files and compiles them to a second script that is added to your page. To reference a template in your app, just reference the name of the template (i.e. `my_module/my_template.handlebars` should be referenced as `my_template`).
+Charcoal's default Gruntfile builds templates for you with the `ember_templates` task. This simply collects all `handlebars` or `hbs` files and compiles them to a second script that is added to your page. 
+
+There's a few special rules for how templates are named in your application, based on their filepath:
+
+* `app/modules/my_module/index.handlebars` => `my_module`
+* `app/modules/my_module/foo.handlebars` => `my_module/foo`
+* `app/modules/my_module/bar/foo.handlebars` => `my_module/bar/foo`
+* `app/templates/foo.handlebars` => `foo`
+* `app/templates/bar/foo.handlebars` => `bar/foo`
+* `app/application.handlebars` => `application`
+
+This allows you to both keep "namespaces" for your templates, as well as allowing you to have templates that respect Ember's [naming conventions](http://emberjs.com/guides/concepts/naming-conventions/). It also allows you to either place your templates in your module folders or use a separate templates folder, depending on your preferences.
 
 ## Using Bower
 
