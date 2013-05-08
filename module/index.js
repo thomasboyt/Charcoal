@@ -4,7 +4,7 @@ var util = require('util');
 var ModuleGenerator = module.exports = function(args, options) {
   yeoman.generators.NamedBase.apply(this, arguments);
 
-  this.controllerType = options['controllerType'] || '';
+  this.controllerType = options.controllerType || '';
 
   if (!this.name) {
     this.log.error("ERROR: You must specify a name when generating a module.");
@@ -24,7 +24,7 @@ ModuleGenerator.prototype.createModule = function() {
   this.modulename = this._.classify(this.name);
 
   var dir = this.dir = "app/modules/" + this.name + "/";
-  
+
   this.template("controller.js", dir + "controller.js");
   this.template("model.js", dir + "model.js");
   this.template("route.js", dir + "route.js");

@@ -8,12 +8,13 @@
 	"eqnull": true,
 	"immed": true,
 	"latedef": true,
+  "laxbreak": true,
 	"newcap": true,
 	"noarg": true,
 	"undef": true,
 	"strict": false,
 	"trailing": true,
 	"smarttabs": true,
-	"white": true,
+	"white": false,
 	"indent": 2
 }

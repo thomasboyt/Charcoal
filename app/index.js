@@ -30,9 +30,9 @@ CharcoalGenerator.prototype.askFor = function() {
   var prompts = [];
 
   prompts.push({
-    name: 'continue',
-    message: 'Do you want to continue?',
     default: 'Y/n',
+    name: 'continue',
+    message: 'Do you want to continue?'
   });
 
   this.prompt(prompts, function (err, props) {
