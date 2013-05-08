@@ -21,7 +21,8 @@ module.exports = {
           'app/**/*.hbs',
           'app/**/*.handlebars'
         ],
-        tasks: ['ember_templates', 'livereload']
+        spawn: true,
+        tasks: ['ember_templates']
       },
       coffee: {
         files: ['app/{,*/}*.coffee'],
