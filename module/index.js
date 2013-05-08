@@ -30,6 +30,6 @@ ModuleGenerator.prototype.createModule = function() {
   this.template("route.js", dir + "route.js");
   this.template("view.js", dir + "view.js");
   this.template("spec.js", "test/spec/" + this.name + "_spec.js");
-  this.copy("template.handlebars", dir + this.name + ".handlebars");
+  this.copy("template.handlebars", dir + "index.handlebars");
 };
 
