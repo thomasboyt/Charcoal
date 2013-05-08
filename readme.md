@@ -42,6 +42,14 @@ The default Bower configuration includes jQuery, Handlebars, Ember, and Ember Da
 
   Skips the automatic execution of `bower` and `npm` after scaffolding has finished.
 
+## "Testing"
+
+Testing right now is sort of ad-hoc while I figure out how to automate testing the generators. In the meantime, before a PR:
+
+* Generate a new application and make sure that `grunt server`, `grunt test`, `grunt test-server`, and `grunt build` are working properly.
+* Generate a new module and make sure it is loaded successfully.
+* Run `grunt jshint` to make sure both the application and module are linted properly.
+
 ## License
 
 [BSD license](http://opensource.org/licenses/bsd-license.php)
