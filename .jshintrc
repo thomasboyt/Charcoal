@@ -1,6 +1,5 @@
 {
 	"node": true,
-	"es5": true,
 	"esnext": true,
 	"bitwise": false,
 	"curly": false,
@@ -15,6 +14,5 @@
 	"strict": false,
 	"trailing": true,
 	"smarttabs": true,
-	"white": false,
 	"indent": 2
 }
