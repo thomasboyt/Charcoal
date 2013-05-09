@@ -81,7 +81,7 @@ module.exports = {
           middleware: function (connect) {
             return [
               lrSnippet,
-              mountFolder(connect, 'tmp'),
+              mountFolder(connect, 'tmp')
             ];
           }
         }
@@ -112,7 +112,7 @@ module.exports = {
     open: {
       server: {
         path: 'http://localhost:<%%= connect.options.port %>'
-      },
+      }
     },
 
     // Dist
@@ -258,7 +258,7 @@ module.exports = {
       html: ['dist/{,*/}*.html'],
       css: ['dist/styles/{,*/}*.css'],
       options: {
-        dirs: ['dist'],
+        dirs: ['dist']
       }
     },
 
@@ -332,14 +332,14 @@ module.exports = {
               // find containing folder. somewhat inelegant, but man, regexes...
               var folders = filename.match(/(.*?)\//g);
               var folder = folders[folders.length - 1];
-              var moduleName = folder.slice(0, folder.length-1)
+              var moduleName = folder.slice(0, folder.length-1);
 
               // app/modules/my_module/index.handlebars => "my_module"
               if (name === "index") {
                 return moduleName;
               }
             }
-            return filename
+            return filename;
           }
           return sourceFile;
         }
@@ -382,13 +382,13 @@ module.exports = {
           // copy uncompiled app js to /tmp for debugging (source maps)
           { expand: true, dest: 'tmp/app', src: ['app/**'] },
 
-          { expand: true, dest: 'tmp/', src: ['components/**'] },
-        ],
+          { expand: true, dest: 'tmp/', src: ['components/**'] }
+        ]
       },
       test: {
         files: [
           { dest: 'tmp/index.html', src: ['test/index.html'] }
-        ],
+        ]
       },
       dist: {
         files: [{

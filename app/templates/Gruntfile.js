@@ -11,19 +11,19 @@ module.exports = function (grunt) {
   // for example:
   // config.less = { ... }
 
-  // concurrent tasks. customize this instead of the multitasks for faster 
+  // concurrent tasks. customize this instead of the multitasks for faster
   // builds
   config.concurrent = {
     server: [
       'ember_templates',
       'coffee:dist',
       'neuter:app',
-      'copy:dev',
+      'copy:dev'
     ],
     test: [
       'ember_templates',
       'coffee',
-      'neuter',
+      'neuter'
     ],
     dist: [
       'ember_templates',
