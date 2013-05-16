@@ -80,7 +80,7 @@ Default configuration: Will take `assets/styles/foo.scss` and compile it to `tmp
 
 ### Using grunt-neuter
 
-[`grunt-neuter`](https://github.com/trek/grunt-neuter) is a plugin for managing "dependencies" between your application's various scripts. Unlike RequireJS or Browserify or any number of other dependency management systems, `grunt-neuter` is only interested in concatinating your files together in the proper order. It has only one function you need to worry about: a global `require()` processor. 
+[`grunt-neuter`](https://github.com/trek/grunt-neuter) is a plugin for managing "dependencies" between your application's various scripts. Unlike RequireJS or Browserify or any number of other dependency management systems, `grunt-neuter` is only interested in concatenating your files together in the proper order. It has only one function you need to worry about: a global `require()` processor. 
 
 With the default configuration, files should be referenced relative to your `app/` folder. For example, if you wanted to require `/app/foo/bar.js`, you'd simply say `require(foo/bar)`.
 
