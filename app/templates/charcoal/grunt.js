@@ -16,13 +16,13 @@ module.exports = {
     // Watch tasks
     // ------------------
     watch: {
-      ember_templates: {
+      emberTemplates: {
         files: [
           'app/**/*.hbs',
           'app/**/*.handlebars'
         ],
         spawn: true,
-        tasks: ['ember_templates']
+        tasks: ['emberTemplates']
       },
       coffee: {
         files: ['app/{,*/}*.coffee'],
@@ -309,7 +309,7 @@ module.exports = {
 
     // Ember-specific tasks
     // ------------------
-    ember_templates: {
+    emberTemplates: {
       options: {
         // this is a little more huge and inelegant than I wanted
 

@@ -15,18 +15,18 @@ module.exports = function (grunt) {
   // builds
   config.concurrent = {
     server: [
-      'ember_templates',
+      'emberTemplates',
       'coffee:dist',
       'neuter:app',
       'copy:dev'
     ],
     test: [
-      'ember_templates',
+      'emberTemplates',
       'coffee',
       'neuter'
     ],
     dist: [
-      'ember_templates',
+      'emberTemplates',
       'neuter:app',
       'copy:dev',
       'copy:dist',
