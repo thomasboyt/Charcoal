@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "dependencies": {
     "jquery": "~2.0.0",
-    "handlebars": "~1.0.0-rc.3",
-    "ember": "~1.0.0-rc.3",
-    "ember-data": "http://builds.emberjs.com.s3.amazonaws.com/ember-data-32747f9c5ae4004b792c5487d33d4329113604e0.js",
+    "handlebars": "~1.0.0",
+    "ember": "~1.0.0",
+    "ember-data": "http://builds.emberjs.com.s3.amazonaws.com/ember-data-0.13.js",
     "normalize-css": "~2.1.1"
   },
   "devDependencies": {
