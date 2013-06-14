@@ -1,5 +1,9 @@
 # Changelog
 
+### 0.2.2 (Jun 14 2013)
+
+* Specify Handlebars version as rc4
+
 ### 0.2.1 (Jun 3 2013)
 
 * Bumped Ember, Handlebars, Ember Data versions
