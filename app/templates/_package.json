@@ -24,7 +24,7 @@
     "grunt-concurrent": "~0.1.0",
     "matchdep": "~0.1.1",
     "grunt-ember-templates": "~0.4.4",
-    "grunt-es6-module-transpiler": "git://github.com/thomasboyt/grunt-es6-module-transpiler.git"
+    "grunt-es6-module-transpiler": "~0.3.0"
   },
   "engines": {
     "node": ">=0.8.0"
