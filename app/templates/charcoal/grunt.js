@@ -59,12 +59,12 @@ module.exports = {
         ],
         tasks: ['livereload']
       },
-      neuter: {
+      transpile: {
         files: [
           'test/**/*.js',
           'app/**/*.js'
         ],
-        tasks: ['neuter', 'copy:dev']
+        tasks: ['transpile', 'copy:dev', 'concat:dev']
       }
     },
 
@@ -354,22 +354,35 @@ module.exports = {
       }
     },
 
-    neuter: {
+    transpile: {
       app: {
-        options: {
-          filepathTransform: function(filepath){ return template.process('app/') + filepath; },
-          includeSourceMap: true
+        moduleName: function (path) {
+          var match;
+          if (match = path.match(/^(?:app|lib|test|test\/tests)\/(.*?)(?:\.js)?$/)) {
+            return match[1];
+          }
+          else {
+            return path;
+          }
         },
-        src: 'app/app.js',
-        dest: 'tmp/app/app.js'
-      },
-      test: {
+        type: 'amd',
+        files: [{
+          expand: true,
+          cwd: 'app/',
+          src: ['**/*.js'],
+          dest: 'tmp/amd/',
+          ext: '.js'
+        }]
+      }
+    },
+
+    concat: {
+      app: {
+        src: ['app/vendor/loader.js', 'tmp/amd/**/*.js'],
+        dest: 'tmp/app/app.js',
         options: {
-          filepathTransform: function(filepath){ return template.process('test/') + filepath; },
-          includeSourceMap: true
-        },
-        src: 'test/main.js',
-        dest: 'tmp/spec/spec.js'
+          footer: 'requireModule("app")'
+        }
       }
     },
 

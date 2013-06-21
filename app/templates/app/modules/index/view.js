@@ -1,2 +1,4 @@
-<%= namespace %>.IndexView = Ember.View.extend({
+var IndexView = Ember.View.extend({
 });
+
+export = IndexView;

@@ -1,2 +1,6 @@
-<%= namespace %>.Router.map(function() {
+var Router = Ember.Router.extend();
+
+Router.map(function() {
 });
+
+export = Router;

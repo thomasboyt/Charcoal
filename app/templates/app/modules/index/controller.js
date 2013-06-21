@@ -1,2 +1,4 @@
-<%= namespace %>.IndexController = Ember.ArrayController.extend({
+var IndexController = Ember.ArrayController.extend({
 });
+
+export = IndexController;

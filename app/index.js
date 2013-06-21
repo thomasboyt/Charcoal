@@ -51,6 +51,7 @@ CharcoalGenerator.prototype.createDirLayout = function() {
   this.mkdir('app');
   this.mkdir('app/modules');
   this.mkdir('app/helpers');
+  this.mkdir('app/vendor');
 
   this.mkdir('assets');
   this.mkdir('assets/styles');
@@ -141,6 +142,7 @@ CharcoalGenerator.prototype.all = function() {
   this.template('app/router.js');
   this.template('app/store.js');
   this.template('app/application.handlebars');
+  this.template('app/vendor/loader.js');
 
   // Generated docs
   this.template('README.md');

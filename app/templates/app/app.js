@@ -1,16 +1,21 @@
-window.<%= namespace %> = Ember.Application.create();
+// see vendor.loader.js
+import 'resolver' as Resolver;
 
-// Default load order. Override as you see fit.
-require("store");
-require("modules/*/model");
-require("modules/*/controller");
-require("modules/*/view");
-require("helpers/*");
-require("router");
-require("modules/*/route");
+import './router' as Router;
+import './store' as Store;
+
+import './modules/index/model' as Thing;
+
+Ember.ENV.LOG_MODULE_RESOLVER = true;
+
+var App = Ember.Application.create({
+  Router: Router,
+  Store: Store,
+  resolver: Resolver
+});
 
 // Create fixtures
-<%= namespace %>.IndexModel.FIXTURES = [
+Thing.FIXTURES = [
   {
     text: "Ember.js",
     url: "http://emberjs.com",
@@ -22,8 +27,8 @@ require("modules/*/route");
     id: 2
   },
   {
-    text: "grunt-neuter",
-    url: "https://github.com/trek/grunt-neuter",
+    text: "ES6 module transpiler",
+    url: "https://github.com/square/es6-module-transpiler",
     id: 3
   },
   {

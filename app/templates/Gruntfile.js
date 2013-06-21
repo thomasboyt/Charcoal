@@ -17,17 +17,17 @@ module.exports = function (grunt) {
     server: [
       'emberTemplates',
       'coffee:dist',
-      'neuter:app',
+      'transpile:app',
       'copy:dev'
     ],
     test: [
       'emberTemplates',
+      'transpile',
       'coffee',
-      'neuter'
     ],
     dist: [
       'emberTemplates',
-      'neuter:app',
+      'transpile:app',
       'copy:dev',
       'copy:dist',
       'coffee',
@@ -49,6 +49,7 @@ module.exports = function (grunt) {
     grunt.task.run([
       'clean:server',
       'concurrent:server',
+      'concat:app',
       'livereload-start',
       'connect:livereload',
       'open',
