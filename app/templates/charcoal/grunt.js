@@ -4,11 +4,9 @@
  * object in your `Gruntfile.js` instead of here.
  * */
 
-var lrSnippet = require('grunt-contrib-livereload/lib/utils').livereloadSnippet;
 var mountFolder = function (connect, dir) {
   return connect.static(require('path').resolve(dir));
 };
-var template = require('grunt').template;
 
 var nameFor = function (path) {
   var match;
@@ -60,21 +58,25 @@ module.exports = {
         tasks: ['less:dev']
       },
 
-      livereload: {
-        files: [
-          'app/*.html',
-          '{tmp,app}/assets/{,*/}*.css',
-          '{tmp,app}/{,*/}*.js',
-          'assets/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
-        ],
-        tasks: ['livereload']
-      },
+      //livereload: {
+      //  files: [
+      //    'app/*.html',
+      //    '{tmp,app}/assets/{,*/}*.css',
+      //    '{tmp,app}/{,*/}*.js',
+      //    'assets/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
+      //  ],
+      //  tasks: ['livereload']
+      //},
       transpile: {
         files: [
           'test/**/*.js',
           'app/**/*.js'
         ],
-        tasks: ['transpile', 'copy', 'concat']
+        tasks: ['transpile', 'concat']
+      },
+
+      options: {
+        livereload: true
       }
     },
 
@@ -86,11 +88,11 @@ module.exports = {
         // change this to '0.0.0.0' to access the server from outside
         hostname: 'localhost'
       },
-      livereload: {
+      app: {
         options: {
           middleware: function (connect) {
             return [
-              lrSnippet,
+              require('connect-livereload')(),
               mountFolder(connect, 'tmp')
             ];
           }
@@ -100,6 +102,7 @@ module.exports = {
         options: {
           middleware: function (connect) {
             return [
+              require('connect-livereload')(),
               mountFolder(connect, 'tmp'),
               mountFolder(connect, 'test')
             ];

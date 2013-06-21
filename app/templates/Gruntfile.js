@@ -39,8 +39,6 @@ module.exports = function (grunt) {
 
   grunt.initConfig(config);
 
-  grunt.renameTask('regarde', 'watch');
-
   grunt.registerTask('server', function (target) {
     if (target === 'dist') {
       return grunt.task.run(['build', 'open', 'connect:dist:keepalive']);
@@ -50,8 +48,7 @@ module.exports = function (grunt) {
       'clean:server',
       'concurrent:server',
       'concat:app',
-      'livereload-start',
-      'connect:livereload',
+      'connect:app',
       'open',
       'watch'
     ]);
