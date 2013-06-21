@@ -1,2 +1,4 @@
-<%= namespace %>.<%= modulename %>Route = Ember.Route.extend({
+var <%= modulename %>Route = Ember.Route.extend({
 });
+
+export = <%= modulename %>Route;

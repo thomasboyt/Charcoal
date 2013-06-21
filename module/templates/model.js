@@ -1,2 +1,4 @@
-<%= namespace %>.<%= modulename %> = DS.Model.extend({
+var <%= modulename %>Model = DS.Model.extend({
 });
+
+export = <%= modulename %>Model;
