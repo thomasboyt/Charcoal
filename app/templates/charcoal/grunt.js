@@ -10,6 +10,16 @@ var mountFolder = function (connect, dir) {
 };
 var template = require('grunt').template;
 
+var nameFor = function (path) {
+  var match;
+  if (match = path.match(/^(?:app|lib|test|test\/spec)\/(.*?)(?:\.js)?$/)) {
+    return match[1];
+  }
+  else {
+    return path;
+  }
+}
+
 module.exports = {
   config: {
 
@@ -64,7 +74,7 @@ module.exports = {
           'test/**/*.js',
           'app/**/*.js'
         ],
-        tasks: ['transpile', 'copy:dev', 'concat:dev']
+        tasks: ['transpile', 'copy', 'concat']
       }
     },
 
@@ -356,15 +366,7 @@ module.exports = {
 
     transpile: {
       app: {
-        moduleName: function (path) {
-          var match;
-          if (match = path.match(/^(?:app|lib|test|test\/tests)\/(.*?)(?:\.js)?$/)) {
-            return match[1];
-          }
-          else {
-            return path;
-          }
-        },
+        moduleName: nameFor,
         type: 'amd',
         files: [{
           expand: true,
@@ -372,6 +374,16 @@ module.exports = {
           src: ['**/*.js'],
           dest: 'tmp/amd/',
           ext: '.js'
+        }]
+      },
+      tests: {
+        moduleName: nameFor,
+        type: 'amd',
+        files: [{
+          expand: true,
+          cwd: 'test/',
+          src: ['**/*.js'],
+          dest: 'tmp/test/amd/',
         }]
       }
     },
@@ -382,6 +394,13 @@ module.exports = {
         dest: 'tmp/app/app.js',
         options: {
           footer: 'requireModule("app")'
+        }
+      },
+      tests: {
+        src: ['app/vendor/loader.js', 'tmp/test/amd/**/*.js'],
+        dest: 'tmp/test/test.js',
+        options: {
+          footer: 'requireModule("main")'
         }
       }
     },

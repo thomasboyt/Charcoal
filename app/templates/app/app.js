@@ -37,3 +37,5 @@ Thing.FIXTURES = [
     id: 4
   }
 ];
+
+export = App;

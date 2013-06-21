@@ -16,7 +16,7 @@ module.exports = function (grunt) {
   config.concurrent = {
     server: [
       'emberTemplates',
-      'coffee:dist',
+      'coffee',
       'transpile:app',
       'copy:dev'
     ],
@@ -60,6 +60,7 @@ module.exports = function (grunt) {
   grunt.registerTask('test', [
     'clean:server',
     'concurrent:test',
+    'concat',
     'copy:dev',
     'copy:test',
     'connect:test',
@@ -69,6 +70,7 @@ module.exports = function (grunt) {
   grunt.registerTask('test-server', [
     'clean:server',
     'concurrent:test',
+    'concat',
     'copy:dev',
     'copy:test',
     'connect:test',

@@ -1,9 +1,15 @@
+import 'app' as App;
+
+App.rootElement = "#ember";
+App.setupForTesting();
+App.injectTestHelpers();
+
 describe("Index", function() {
   beforeEach(function () {
-    Ember.run(<%= namespace %>, <%= namespace %>.advanceReadiness);
+    Ember.run(App, App.advanceReadiness);
   });
   afterEach(function (done) {
-    <%= namespace %>.reset();
+    App.reset();
     done();
   });
 
