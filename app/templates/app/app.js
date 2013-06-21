@@ -6,8 +6,6 @@ import './store' as Store;
 
 import './modules/index/model' as Thing;
 
-Ember.ENV.LOG_MODULE_RESOLVER = true;
-
 var App = Ember.Application.create({
   Router: Router,
   Store: Store,
