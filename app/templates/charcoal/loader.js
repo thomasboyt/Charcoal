@@ -1,3 +1,5 @@
+/* jshint -W003 */
+
 if (typeof define !== 'function' && typeof requireModule !== 'function') {
   var define, requireModule;
 
@@ -32,7 +34,8 @@ if (typeof define !== 'function' && typeof requireModule !== 'function') {
       }
 
       var value = callback.apply(this, reified);
-      return seen[name] = exports || value;
+      seen[name] = exports || value;
+      return seen[name];
     };
 
     define.registry = registry;
@@ -66,7 +69,7 @@ define("resolver",
     return {
       create: function (injections) {
         if (typeof klass.extend === 'function') {
-          return klass.extend(injections);  
+          return klass.extend(injections);
         } else {
           return klass;
         }
@@ -97,6 +100,7 @@ define("resolver",
         Ember.Logger.info('miss', moduleName);
       }
 
+      /* jshint -W040 */
       return this._super(parsedName);
     }
   }

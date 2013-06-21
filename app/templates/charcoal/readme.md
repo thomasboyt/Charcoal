@@ -102,7 +102,7 @@ test/
        |--- my_module_spec.js
 ```
 
-You can generate a module like this with `yo charcoal:module <module name>`. 
+You can generate a module like this with `yo charcoal:module <module name>`.
 
 By default, `app.js` (your app's entry point) loads your modules in the following order:
 

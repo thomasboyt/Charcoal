@@ -23,7 +23,7 @@ module.exports = function (grunt) {
     test: [
       'emberTemplates',
       'transpile',
-      'coffee',
+      'coffee'
     ],
     dist: [
       'emberTemplates',
@@ -88,8 +88,8 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask('default', [
-    'jshint',
     'test',
-    'build'
+    'build',
+    'jshint'
   ]);
 };

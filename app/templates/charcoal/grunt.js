@@ -58,15 +58,6 @@ module.exports = {
         tasks: ['less:dev']
       },
 
-      //livereload: {
-      //  files: [
-      //    'app/*.html',
-      //    '{tmp,app}/assets/{,*/}*.css',
-      //    '{tmp,app}/{,*/}*.js',
-      //    'assets/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
-      //  ],
-      //  tasks: ['livereload']
-      //},
       transpile: {
         files: [
           'test/**/*.js',
@@ -149,8 +140,7 @@ module.exports = {
       },
       all: [
         'Gruntfile.js',
-        'app/**/*.js',
-        'test/**/*.js'
+        'tmp/app/app.js',
       ]
     },
 
@@ -393,17 +383,17 @@ module.exports = {
 
     concat: {
       app: {
-        src: ['app/vendor/loader.js', 'tmp/amd/**/*.js'],
+        src: ['charcoal/loader.js', 'tmp/amd/**/*.js'],
         dest: 'tmp/app/app.js',
         options: {
-          footer: 'requireModule("app")'
+          footer: 'requireModule("app");'
         }
       },
       tests: {
-        src: ['app/vendor/loader.js', 'tmp/test/amd/**/*.js'],
+        src: ['charcoal/loader.js', 'tmp/test/amd/**/*.js'],
         dest: 'tmp/test/test.js',
         options: {
-          footer: 'requireModule("main")'
+          footer: 'requireModule("main");'
         }
       }
     },

@@ -14,5 +14,9 @@
 	"strict": false,
 	"trailing": true,
 	"smarttabs": true,
-	"indent": 2
+	"indent": 2,
+	"globals": [
+		"define",
+		"requireModule"
+	]
 }
