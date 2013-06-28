@@ -3,181 +3,145 @@ var util = require('util');
 var path = require('path');
 var yeoman = require('yeoman-generator');
 
-var EmberGenerator = module.exports = function EmberGenerator(args, options) {
+var CharcoalGenerator = module.exports = function CharcoalGenerator(args, options) {
   yeoman.generators.Base.apply(this, arguments);
-
-  // setup the test-framework property, Gruntfile template will need this
-  this.testFramework = options['test-framework'] || 'mocha';
-
-  // for hooks to resolve on mocha by default
-  if (!options['test-framework']) {
-    options['test-framework'] = 'mocha';
-  }
-
-  // hook for CoffeeScript
-  this.options.coffee = options.coffee;
-
-  // resolved to mocha by default (could be switched to jasmine for instance)
-  this.hookFor('test-framework', { as: 'app' });
 
   this.indexFile = this.readFileAsString(path.join(this.sourceRoot(), 'index.html'));
   this.pkg = JSON.parse(this.readFileAsString(path.join(__dirname, '../package.json')));
 
-  // this holds the list of scripts we want to include in components.js
-  this.bowerScripts = [
-    'bower_components/jquery/jquery.js',
-    'bower_components/handlebars/handlebars.runtime.js',
-    'bower_components/ember/ember.js'
-  ];
-
   this.on('end', function () {
     this.installDependencies({ skipInstall: options['skip-install'] });
   });
+
+  this.namespace = this._.classify(this.appname);
 };
 
-util.inherits(EmberGenerator, yeoman.generators.Base);
+util.inherits(CharcoalGenerator, yeoman.generators.Base);
 
-EmberGenerator.prototype.welcome = function welcome() {
-  // welcome message
-  var welcomeMsg =
-  '\n     _-----_' +
-  '\n    |       |' +
-  '\n    |' + '--(o)--'.red + '|   .--------------------------.' +
-  '\n   `---------´  |    ' + 'Welcome to Yeoman,'.yellow.bold + '    |' +
-  '\n    ' + '( '.yellow + '_' + '´U`'.yellow + '_' + ' )'.yellow + '   |   ' + 'ladies and gentlemen!'.yellow.bold + '  |' +
-  '\n    /___A___\\   \'__________________________\'' +
-  '\n     |  ~  |'.yellow +
-  '\n   __' + '\'.___.\''.yellow + '__' +
-  '\n ´   ' + '`  |'.red + '° ' + '´ Y'.red + ' `\n';
-
-  console.log(welcomeMsg);
+CharcoalGenerator.prototype.welcome = function() {
+  this.log('This generator will generate a new Ember application called '
+           + this._.classify(this.appname) + ' in the folder '
+           + this.env.cwd + '.');
 };
 
-EmberGenerator.prototype.askFor = function askFor() {
+CharcoalGenerator.prototype.askFor = function() {
   var cb = this.async();
 
-  var prompts = [{
-    type: 'confirm',
-    name: 'emberData',
-    message: 'Would you like to include Ember Data?',
-    default: true
-  }, {
-    type: 'confirm',
-    name: 'compassBootstrap',
-    message: 'Would you like to include Twitter Bootstrap for Sass?',
-    default: true
-  }];
+  var prompts = [];
 
-  this.prompt(prompts, function (props) {
-    this.compassBootstrap = props.compassBootstrap;
-    this.emberData = props.emberData;
+  prompts.push({
+    default: 'Y/n',
+    name: 'continue',
+    message: 'Do you want to continue?'
+  });
 
-    cb();
+  this.prompt(prompts, function (err, props) {
+    if (err) {
+      return this.emit('error', err);
+    }
+
+    if (props.continue.match(/y/i)) {
+      cb();
+    }
+
   }.bind(this));
-
 };
 
-EmberGenerator.prototype.createDirLayout = function createDirLayout() {
-  this.mkdir('app/templates');
-  this.mkdir('app/styles');
-  this.mkdir('app/images');
-  this.mkdir('app/scripts');
-  this.mkdir('app/scripts/models');
-  this.mkdir('app/scripts/controllers');
-  this.mkdir('app/scripts/routes');
-  this.mkdir('app/scripts/views');
+CharcoalGenerator.prototype.createDirLayout = function() {
+  this.mkdir('app');
+  this.mkdir('app/modules');
+  this.mkdir('app/helpers');
+
+  this.mkdir('assets');
+  this.mkdir('assets/styles');
+  this.mkdir('assets/images');
+  this.mkdir('assets/js');
 };
 
-EmberGenerator.prototype.git = function git() {
+CharcoalGenerator.prototype.git = function() {
   this.copy('gitignore', '.gitignore');
   this.copy('gitattributes', '.gitattributes');
 };
 
-EmberGenerator.prototype.bower = function bower() {
+CharcoalGenerator.prototype.bower = function() {
   this.copy('bowerrc', '.bowerrc');
-  this.copy('_bower.json', 'bower.json');
+  this.template('_bower.json', 'bower.json');
 };
 
-EmberGenerator.prototype.packageFile = function packageFile() {
+CharcoalGenerator.prototype.packageFile = function() {
   this.copy('_package.json', 'package.json');
 };
 
-EmberGenerator.prototype.jshint = function jshint() {
+CharcoalGenerator.prototype.jshint = function() {
   this.copy('jshintrc', '.jshintrc');
 };
 
-EmberGenerator.prototype.editorConfig = function editorConfig() {
+CharcoalGenerator.prototype.editorConfig = function() {
   this.copy('editorconfig', '.editorconfig');
 };
 
-EmberGenerator.prototype.gruntfile = function gruntfile() {
+CharcoalGenerator.prototype.gruntfile = function() {
+  this.template('charcoal/grunt.js');
+  this.template('charcoal/readme.md');
   this.template('Gruntfile.js');
 };
 
-EmberGenerator.prototype.templates = function templates() {
-  this.copy('hbs/application.hbs', 'app/templates/application.hbs');
-  this.copy('hbs/index.hbs', 'app/templates/index.hbs');
+CharcoalGenerator.prototype.mochaTests = function() {
+  this.template('test/index.html');
+  this.template('test/main.js');
+  this.template('test/spec/index_spec.js');
 };
 
-EmberGenerator.prototype.emberDataJavascript = function emberDataJavascript() {
-  if (this.emberData) {
-    this.bowerScripts.push('bower_components/ember-data-shim/ember-data.js');
-  }
+CharcoalGenerator.prototype.writeIndex = function() {
+  this.indexFile = this.appendFiles({
+    html: this.indexFile,
+    fileType: 'css',
+    optimizedPath: 'styles/main.css',
+    sourceFileList: [
+      'components/normalize-css/normalize.css',
+      'assets/styles/style.css'
+    ],
+    searchPath: '.'
+  });
+
+  this.indexFile = this.appendFiles({
+    html: this.indexFile,
+    fileType: 'js',
+    optimizedPath: 'scripts/components.js',
+    sourceFileList: [
+      'components/jquery/jquery.js',
+      'components/handlebars/handlebars.runtime.js',
+      'components/ember/ember.js',
+      'components/ember-data/index.js'
+    ],
+    searchPath: '.'
+  });
+
+  this.indexFile = this.appendFiles(this.indexFile, 'js', 'scripts/main.js', [
+    'app/app.js',
+    'app/compiled-templates.js'
+  ], null, ['tmp']);
 };
 
-EmberGenerator.prototype.writeIndex = function writeIndex() {
-  var mainCssFiles = [];
-  if (this.compassBootstrap) {
-    mainCssFiles.push('styles/style.css');
-  } else {
-    mainCssFiles.push('styles/normalize.css');
-    mainCssFiles.push('styles/style.css');
-  }
-
-  this.indexFile = this.appendStyles(this.indexFile, 'styles/main.css', mainCssFiles);
-
-  this.indexFile = this.appendScripts(this.indexFile, 'scripts/components.js', this.bowerScripts);
-
-  this.indexFile = this.appendFiles(this.indexFile, 'js', 'scripts/templates.js', ['scripts/compiled-templates.js'], null, '.tmp');
-  this.indexFile = this.appendFiles(this.indexFile, 'js', 'scripts/main.js', ['scripts/combined-scripts.js'], null, '.tmp');
-};
-
-EmberGenerator.prototype.bootstrapJavaScript = function bootstrapJavaScript() {
-  if (!this.compassBootstrap) {
-    return;  // Skip if disabled.
-  }
-
-  // Wire Twitter Bootstrap plugins
-  this.indexFile = this.appendScripts(this.indexFile, 'scripts/plugins.js', [
-    'bower_components/bootstrap-sass/js/bootstrap-affix.js',
-    'bower_components/bootstrap-sass/js/bootstrap-alert.js',
-    'bower_components/bootstrap-sass/js/bootstrap-dropdown.js',
-    'bower_components/bootstrap-sass/js/bootstrap-tooltip.js',
-    'bower_components/bootstrap-sass/js/bootstrap-modal.js',
-    'bower_components/bootstrap-sass/js/bootstrap-transition.js',
-    'bower_components/bootstrap-sass/js/bootstrap-button.js',
-    'bower_components/bootstrap-sass/js/bootstrap-popover.js',
-    'bower_components/bootstrap-sass/js/bootstrap-typeahead.js',
-    'bower_components/bootstrap-sass/js/bootstrap-carousel.js',
-    'bower_components/bootstrap-sass/js/bootstrap-scrollspy.js',
-    'bower_components/bootstrap-sass/js/bootstrap-collapse.js',
-    'bower_components/bootstrap-sass/js/bootstrap-tab.js'
-  ]);
-};
-
-EmberGenerator.prototype.all = function all() {
+CharcoalGenerator.prototype.all = function() {
   this.write('app/index.html', this.indexFile);
 
-  if (this.compassBootstrap) {
-    this.copy('styles/style_bootstrap.scss', 'app/styles/style.scss');
-  } else {
-    this.copy('styles/normalize.css', 'app/styles/normalize.css');
-    this.copy('styles/style.css', 'app/styles/style.css');
-  }
+  // Styles
+  this.copy('styles/style.css', 'assets/styles/style.css');
 
-  if (!this.options.coffee) {
-    this.copy('scripts/app.js', 'app/scripts/app.js');
-  } else {
-    this.copy('coffeeScript/app.coffee', 'app/scripts/app.coffee');
-  }
+  // Example Module
+  this.template('app/modules/index/controller.js');
+  this.template('app/modules/index/model.js');
+  this.template('app/modules/index/route.js');
+  this.template('app/modules/index/view.js');
+  this.template('app/modules/index/index.handlebars');
+
+  // app/ files
+  this.template('app/app.js');
+  this.template('app/router.js');
+  this.template('app/store.js');
+  this.template('app/application.handlebars');
+
+  // Generated docs
+  this.template('README.md');
 };
