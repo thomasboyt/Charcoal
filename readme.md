@@ -2,15 +2,12 @@
 
 This an alternative Ember generator forked from [Yeoman's offical Ember Generator](https://github.com/yeoman/generator-ember). 
 
-This generator creates a new Ember project that uses Bower to handle dependencies and builds with [Trek's Grunt-Neuter task](https://github.com/trek/grunt-neuter). It uses a "module" pattern for the file structure rather than the traditional controller, model, view, route, and template folders. 
-
 What Charcoal has:
 
 * A generator for creating a new Ember project, including dependencies via Bower.
-* A default set of smart conventions and Grunt tasks to support it.
-* A generator to create new Ember modules.
-* [A guide to building projects with Yeoman+Grunt+Bower+Charcoal.](https://github.com/thomasboyt/charcoal/blob/master/app/templates/charcoal/readme.md)
-* Preconfigured but disabled-by-default static assets tasks. Use only the dependencies you need.
+* A default set of smart conventions and Grunt tasks to support it, including an easily-extendable Grunt configuration.
+* ES6 module transpiler integration. Write your app using [the next generation of JS modules](http://www.thomasboyt.com/2013/06/21/es6-module-transpiler.html) without having to set configure it yourself.
+* A bundled loader file for Ember to auto-resolve your dependencies. Never write "App.FooController" again!
 
 What Charcoal does not have:
 
@@ -34,7 +31,7 @@ A page with "Welcome to Ember.js" should appear in your browser. Refer to the [d
 
 ## Bower
 
-The default Bower configuration includes jQuery, Handlebars, Ember, and Ember Data. The first three are all their latest stable revision, while Ember Data is always pulled from [ember-data-latest.js](http://builds.emberjs.com.s3.amazonaws.com/ember-data-latest.js).
+The default Bower configuration includes jQuery (2.x), Handlebars, Ember, and Ember Data. Check the `bower.json` file to see the specific versions used. Ember occasionally has compatibility issues between versions of Handlebars, Ember, and Ember Data, so if something seems broken, check to make sure you're using versions that work properly together.
 
 ## Options
 
@@ -46,7 +43,7 @@ The default Bower configuration includes jQuery, Handlebars, Ember, and Ember Da
 
 Testing right now is sort of ad-hoc while I figure out how to automate testing the generators. In the meantime, before a PR:
 
-* Generate a new application and make sure that `grunt server`, `grunt test`, `grunt test-server`, and `grunt build` are working properly.
+* Generate a new application and make sure that `grunt server`, `grunt test`, `grunt test:browser`, and `grunt build` are working properly.
 * Generate a new module and make sure it is loaded successfully.
 * Run `grunt jshint` to make sure both the application and module are linted properly.
 
