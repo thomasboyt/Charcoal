@@ -1,9 +1,8 @@
 var nameFor = function (path) {
-  var match;
-  if (match = path.match(/^(?:app|lib|test|test\/spec)\/(.*?)(?:\.js)?$/)) {
+  var match = path.match(/^(?:app|lib|test|test\/spec)\/(.*?)(?:\.js)?$/);
+  if (match) {
     return match[1];
-  }
-  else {
+  } else {
     return path;
   }
 };
@@ -30,4 +29,4 @@ module.exports = {
       dest: 'tmp/test/amd/',
     }]
   }
-}
+};

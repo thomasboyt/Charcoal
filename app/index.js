@@ -75,7 +75,6 @@ CharcoalGenerator.prototype.editorConfig = function() {
 };
 
 CharcoalGenerator.prototype.gruntfile = function() {
-  this.template('charcoal/readme.md');
   this.directory('configurations/');
   this.template('Gruntfile.js');
 };

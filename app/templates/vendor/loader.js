@@ -1,3 +1,5 @@
+/* jshint -W003 */
+
 if (typeof define !== 'function' && typeof requireModule !== 'function') {
   var define, requireModule;
 
