@@ -6,7 +6,7 @@ var yeoman = require('yeoman-generator');
 var CharcoalGenerator = module.exports = function CharcoalGenerator(args, options) {
   yeoman.generators.Base.apply(this, arguments);
 
-  this.indexFile = this.readFileAsString(path.join(this.sourceRoot(), 'index.html'));
+  this.indexFile = this.readFileAsString(path.join(this.sourceRoot(), 'public/index.html'));
   this.pkg = JSON.parse(this.readFileAsString(path.join(__dirname, '../package.json')));
 
   this.on('end', function () {
@@ -49,13 +49,7 @@ CharcoalGenerator.prototype.askFor = function() {
 
 CharcoalGenerator.prototype.createDirLayout = function() {
   this.mkdir('app');
-  this.mkdir('app/modules');
   this.mkdir('app/helpers');
-
-  this.mkdir('assets');
-  this.mkdir('assets/styles');
-  this.mkdir('assets/images');
-  this.mkdir('assets/js');
 };
 
 CharcoalGenerator.prototype.git = function() {
@@ -81,8 +75,8 @@ CharcoalGenerator.prototype.editorConfig = function() {
 };
 
 CharcoalGenerator.prototype.gruntfile = function() {
-  this.template('charcoal/grunt.js');
   this.template('charcoal/readme.md');
+  this.directory('configurations/');
   this.template('Gruntfile.js');
 };
 
@@ -96,10 +90,10 @@ CharcoalGenerator.prototype.writeIndex = function() {
   this.indexFile = this.appendFiles({
     html: this.indexFile,
     fileType: 'css',
-    optimizedPath: 'assets/styles/main.css',
+    optimizedPath: 'styles/main.css',
     sourceFileList: [
       'components/normalize-css/normalize.css',
-      'assets/styles/style.css'
+      'styles/style.css'
     ],
     searchPath: '.'
   });
@@ -124,24 +118,24 @@ CharcoalGenerator.prototype.writeIndex = function() {
 };
 
 CharcoalGenerator.prototype.all = function() {
-  this.write('app/index.html', this.indexFile);
+  this.write('public/index.html', this.indexFile);
 
   // Styles
-  this.copy('styles/style.css', 'assets/styles/style.css');
+  this.copy('styles/style.css', 'styles/style.css');
 
   // Example Module
-  this.template('app/modules/index/controller.js');
-  this.template('app/modules/index/model.js');
-  this.template('app/modules/index/route.js');
-  this.template('app/modules/index/view.js');
-  this.template('app/modules/index/index.handlebars');
+  this.template('app/controllers/index.js');
+  this.template('app/models/index.js');
+  this.template('app/routes/index.js');
+  this.template('app/views/index.js');
+  this.template('app/templates/index.handlebars');
 
   // app/ files
+  this.template('app/templates/application.handlebars');
   this.template('app/app.js');
   this.template('app/router.js');
   this.template('app/store.js');
-  this.template('app/application.handlebars');
-  this.template('charcoal/loader.js');
+  this.template('vendor/loader.js');
 
   // Generated docs
   this.template('README.md');

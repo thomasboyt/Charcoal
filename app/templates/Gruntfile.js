@@ -5,43 +5,51 @@ module.exports = function (grunt) {
   require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
   // load the default charcoal grunt configuration
-  var config = require('./charcoal/grunt').config;
+  function config(configFileName) {
+    return require('./configurations/' + configFileName);
+  }
 
-  // if you'd like to modify the default grunt config, do it here
-  // for example:
-  // config.less = { ... }
+  grunt.initConfig({
+    pkg: grunt.file.readJSON('package.json'),
+    env: process.env,
 
-  // concurrent tasks. customize this instead of the multitasks for faster
-  // builds
-  config.concurrent = {
-    server: [
-      'emberTemplates',
-      'coffee',
-      'transpile:app',
-      'copy:dev'
-    ],
-    test: [
-      'emberTemplates',
-      'transpile',
-      'coffee'
-    ],
-    dist: [
-      'emberTemplates',
-      'transpile:app',
-      'copy:dev',
-      'copy:dist',
-      'coffee',
-      'imagemin',
-      'svgmin',
-      'htmlmin'
-    ]
-  };
+    clean: config('clean'),
+    concat: config('concat'),
+    connect: config('connect'),
+    copy: config('copy'),
+    cssmin: config('cssmin'),
+    emberTemplates: config('emberTemplates'),
+    jshint: config('jshint'),
+    less: config('less'),
+    mocha: config('mocha'),
+    rev: config('rev'),
+    transpile: config('transpile'),
+    usemin: config('usemin'),
+    useminPrepare: config('useminPrepare'),
+    watch: config('watch'),
 
-  grunt.initConfig(config);
+    concurrent: {
+      server: [
+        'emberTemplates',
+        'transpile:app',
+        'copy:dev'
+      ],
+      test: [
+        'emberTemplates',
+        'transpile',
+      ],
+      dist: [
+        'emberTemplates',
+        'transpile:app',
+        'copy:dev',
+        'copy:dist',
+      ]
+    }
+  });
 
   grunt.registerTask('server', function (target) {
     if (target === 'dist') {
-      return grunt.task.run(['build', 'open', 'connect:dist:keepalive']);
+      return grunt.task.run(['build', 'connect:dist:keepalive']);
     }
 
     grunt.task.run([
@@ -49,7 +57,6 @@ module.exports = function (grunt) {
       'concurrent:server',
       'concat:app',
       'connect:app',
-      'open',
       'watch'
     ]);
   });
@@ -71,7 +78,6 @@ module.exports = function (grunt) {
     'copy:dev',
     'copy:test',
     'connect:test',
-    'open',
     'watch'
   ]);
 

@@ -3,4 +3,4 @@ var Store = DS.Store.extend({
   adapter: DS.FixtureAdapter.create()
 });
 
-export = Store;
+export default Store;

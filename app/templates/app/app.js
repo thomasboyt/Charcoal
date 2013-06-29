@@ -1,10 +1,9 @@
-// see vendor.loader.js
-import 'resolver' as Resolver;
+import Resolver from 'resolver';
 
-import './router' as Router;
-import './store' as Store;
+import Router from './router';
+import Store from './store';
 
-import './modules/index/model' as Thing;
+import Thing from './models/index';
 
 var App = Ember.Application.create({
   Router: Router,
@@ -36,4 +35,4 @@ Thing.FIXTURES = [
   }
 ];
 
-export = App;
+export default App;

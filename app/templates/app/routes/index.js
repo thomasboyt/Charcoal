@@ -1,4 +1,4 @@
-import './model' as Thing;
+import Thing from '../models/index';
 
 var IndexRoute = Ember.Route.extend({
   model: function(params, transition) {
@@ -9,4 +9,4 @@ var IndexRoute = Ember.Route.extend({
   }
 });
 
-export = IndexRoute;
+export default IndexRoute;

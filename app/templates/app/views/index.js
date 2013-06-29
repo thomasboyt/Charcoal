@@ -1,4 +1,4 @@
 var IndexView = Ember.View.extend({
 });
 
-export = IndexView;
+export default IndexView;

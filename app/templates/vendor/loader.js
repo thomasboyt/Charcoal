@@ -1,5 +1,3 @@
-/* jshint -W003 */
-
 if (typeof define !== 'function' && typeof requireModule !== 'function') {
   var define, requireModule;
 
@@ -34,8 +32,7 @@ if (typeof define !== 'function' && typeof requireModule !== 'function') {
       }
 
       var value = callback.apply(this, reified);
-      seen[name] = exports || value;
-      return seen[name];
+      return seen[name] = exports || value;
     };
 
     define.registry = registry;
@@ -59,17 +56,18 @@ define("resolver",
    *     (as is typical with Ember).
    */
   var typeMap = {
-    view: 'view',
-    route: 'route',
-    service: 'service',
-    controller: 'controller'
+    view: 'views',
+    util: 'utils',
+    route: 'routes',
+    service: 'services',
+    controller: 'controllers'
   };
 
   function classFactory(klass) {
     return {
       create: function (injections) {
         if (typeof klass.extend === 'function') {
-          return klass.extend(injections);
+          return klass.extend(injections);  
         } else {
           return klass;
         }
@@ -80,7 +78,10 @@ define("resolver",
   var underscore = Ember.String.underscore;
 
   function resolveOther(parsedName) {
-    var moduleName = 'modules/' + parsedName.fullNameWithoutType + '/' + typeMap[parsedName.type];
+    var pluralizedType = typeMap[parsedName.type] || parsedName.type;
+    var name = parsedName.fullNameWithoutType;
+
+    var moduleName = pluralizedType + '/' + underscore(name);
     var module;
 
     if (define.registry[moduleName]) {
@@ -91,16 +92,15 @@ define("resolver",
       }
 
       if (Ember.ENV.LOG_MODULE_RESOLVER){
-        Ember.Logger.info('hit', moduleName);
+        Ember.logger.info('hit', moduleName);
       }
 
       return module;
     } else  {
       if (Ember.ENV.LOG_MODULE_RESOLVER){
-        Ember.Logger.info('miss', moduleName);
+        Ember.logger.info('miss', moduleName);
       }
 
-      /* jshint -W040 */
       return this._super(parsedName);
     }
   }

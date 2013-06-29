@@ -1,4 +1,4 @@
 var IndexController = Ember.ArrayController.extend({
 });
 
-export = IndexController;
+export default IndexController;

@@ -3,4 +3,4 @@ var Thing = DS.Model.extend({
   url: DS.attr('string')
 });
 
-export = Thing;
+export default Thing;
