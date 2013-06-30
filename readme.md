@@ -7,7 +7,7 @@ What Charcoal has:
 * A generator for creating a new Ember project, including dependencies via Bower.
 * A default set of smart conventions and Grunt tasks to support it, including an easily-extendable Grunt configuration.
 * ES6 module transpiler integration. Write your app using [the next generation of JS modules](http://www.thomasboyt.com/2013/06/21/es6-module-transpiler.html) without having to set configure it yourself.
-* A bundled loader file for Ember to auto-resolve your dependencies. Never write "App.FooController" again!
+* A bundled loader file for Ember that will auto-resolve your dependencies. Never write "App.FooController" again!
 
 What Charcoal does not have:
 
