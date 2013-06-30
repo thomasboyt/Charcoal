@@ -1,4 +1,4 @@
-import 'app' as App;
+import App from 'app';
 
 App.rootElement = "#ember";
 App.setupForTesting();
