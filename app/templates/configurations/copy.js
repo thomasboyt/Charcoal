@@ -17,16 +17,10 @@ module.exports = {
   },
   dist: {
     files: [{
+      src: '**',
+      dest: 'dist/',
       expand: true,
-      dot: true,
-      cwd: 'app',
-      dest: 'dist',
-      src: [
-        '*.{ico,txt}',
-        '.htaccess',
-        'assets/images/{,*/}*.{webp,gif}',
-        'assets/styles/fonts/*'
-      ]
+      cwd: 'public/'
     }]
   }
 };

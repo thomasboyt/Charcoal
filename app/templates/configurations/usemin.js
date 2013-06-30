@@ -1,5 +1,5 @@
 module.exports = {
-  html: ['dist/{,*/}*.html'],
+  html: ['dist/index.html'],
   css: ['dist/styles/{,*/}*.css'],
   options: {
     dirs: ['dist']
