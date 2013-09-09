@@ -1,3 +1,5 @@
+**This project has been deprecated.** Don't stress if you've built a project using it - it won't stop functioning or anything - but the template has been superceded by [Ember App Kit](https://github.com/stefanpenner/ember-app-kit). Hopefully a Yeoman generator for it will be released soon :)
+
 # Charcoal: An alternative Ember generator 
 
 This an alternative Ember generator forked from [Yeoman's offical Ember Generator](https://github.com/yeoman/generator-ember). 
