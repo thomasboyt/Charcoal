@@ -2,6 +2,7 @@
 var util = require('util');
 var path = require('path');
 var yeoman = require('yeoman-generator');
+var argv = require('optimist').argv;
 
 var CharcoalGenerator = module.exports = function CharcoalGenerator(args, options) {
   yeoman.generators.Base.apply(this, arguments);
@@ -13,14 +14,14 @@ var CharcoalGenerator = module.exports = function CharcoalGenerator(args, option
     this.installDependencies({ skipInstall: options['skip-install'] });
   });
 
-  this.namespace = this._.classify(this.appname);
+  this.namespace = argv.namespace || this._.classify(this.appname);
 };
 
 util.inherits(CharcoalGenerator, yeoman.generators.Base);
 
 CharcoalGenerator.prototype.welcome = function() {
   this.log('This generator will generate a new Ember application called '
-           + this._.classify(this.appname) + ' in the folder '
+           + this._.classify(this.namespace) + ' in the folder '
            + this.env.cwd + '.');
 };
 

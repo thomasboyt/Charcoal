@@ -1,5 +1,6 @@
 var yeoman = require('yeoman-generator');
 var util = require('util');
+var argv = require('optimist').argv;
 
 var ModuleGenerator = module.exports = function(args, options) {
   yeoman.generators.NamedBase.apply(this, arguments);
@@ -20,7 +21,7 @@ util.inherits(ModuleGenerator, yeoman.generators.NamedBase);
 
 ModuleGenerator.prototype.createModule = function() {
   this.name = this._.underscored(this.name);
-  this.namespace = this._.classify(this.appname);
+  this.namespace = argv.namespace || this._.classify(this.appname);
   this.modulename = this._.classify(this.name);
 
   var dir = this.dir = "app/modules/" + this.name + "/";

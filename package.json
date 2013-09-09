@@ -20,7 +20,8 @@
     "url": "git://github.com/thomasboyt/charcoal.git"
   },
   "dependencies": {
-    "yeoman-generator": "~0.10.3"
+    "yeoman-generator": "~0.10.3",
+    "optimist": "~0.6.0"
   },
   "engines": {
     "node": ">=0.8.0"
